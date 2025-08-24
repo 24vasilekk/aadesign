@@ -38,7 +38,7 @@ const TelegramApp = {
     
     setThemeColors() {
         if (this.tg) {
-            this.tg.setHeaderColor('#FFBDC8');
+            this.tg.setHeaderColor('#F00B0D');
             this.tg.setBackgroundColor('#ffffff');
         }
     },
@@ -178,30 +178,42 @@ const Navigation = {
     setupSwipeNavigation() {
         let touchStartX = 0;
         let touchEndX = 0;
+        let touchStartY = 0;
+        let touchEndY = 0;
         
         document.addEventListener('touchstart', (e) => {
             touchStartX = e.changedTouches[0].screenX;
+            touchStartY = e.changedTouches[0].screenY;
         });
         
         document.addEventListener('touchend', (e) => {
             touchEndX = e.changedTouches[0].screenX;
+            touchEndY = e.changedTouches[0].screenY;
             this.handleSwipe();
         });
         
         this.handleSwipe = () => {
-            const swipeThreshold = 50;
-            const tabs = ['shop', 'cases', 'reviews', 'ideas', 'faq'];
-            const currentIndex = tabs.indexOf(this.currentSection);
+            const swipeThreshold = 80;
+            const verticalThreshold = 60;
             
-            if (touchStartX - touchEndX > swipeThreshold) {
-                // Swipe left - next tab
-                if (currentIndex < tabs.length - 1) {
-                    this.navigateTo(tabs[currentIndex + 1]);
-                }
-            } else if (touchEndX - touchStartX > swipeThreshold) {
-                // Swipe right - previous tab
-                if (currentIndex > 0) {
-                    this.navigateTo(tabs[currentIndex - 1]);
+            const horizontalDistance = Math.abs(touchEndX - touchStartX);
+            const verticalDistance = Math.abs(touchEndY - touchStartY);
+            
+            // Только если горизонтальный свайп больше вертикального
+            if (horizontalDistance > verticalDistance && horizontalDistance > swipeThreshold) {
+                const tabs = ['shop', 'cases', 'reviews', 'ideas', 'faq'];
+                const currentIndex = tabs.indexOf(this.currentSection);
+                
+                if (touchStartX - touchEndX > swipeThreshold) {
+                    // Swipe left - next tab
+                    if (currentIndex < tabs.length - 1) {
+                        this.navigateTo(tabs[currentIndex + 1]);
+                    }
+                } else if (touchEndX - touchStartX > swipeThreshold) {
+                    // Swipe right - previous tab
+                    if (currentIndex > 0) {
+                        this.navigateTo(tabs[currentIndex - 1]);
+                    }
                 }
             }
         };
@@ -725,7 +737,6 @@ const Ideas = {
 const Animations = {
     init() {
         this.setupScrollAnimations();
-        this.setupParallax();
         this.setupLazyLoading();
     },
     
@@ -747,18 +758,6 @@ const Animations = {
         document.querySelectorAll('.service-card, .case-card, .idea-card').forEach(el => {
             el.classList.add('fade-in');
             observer.observe(el);
-        });
-    },
-    
-    setupParallax() {
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const parallax = document.querySelector('.hero');
-            
-            if (parallax) {
-                const speed = 0.5;
-                parallax.style.transform = `translateY(${scrolled * speed}px)`;
-            }
         });
     },
     
