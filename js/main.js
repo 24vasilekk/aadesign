@@ -261,6 +261,12 @@ const Shop = {
         // Send to Telegram
         TelegramApp.sendData(orderData);
         
+        if (TelegramApp.tg) {
+            setTimeout(() => {
+                TelegramApp.tg.close();
+            }, 2000); // Закрыть через 2 секунды
+        }
+
         // Show main button if cart has items
         if (this.cart.length > 0 && TelegramApp.tg) {
             TelegramApp.tg.MainButton.show();
