@@ -28,6 +28,25 @@ npm-debug.log*
 *.temp
 .cache/
 
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+
 # Images (if you want to keep them out of repo initially)
 # assets/images/*
 # !assets/images/.gitkeep
+
+# Database
+*.sqlite3
+*.db
+
+# Coverage reports
+htmlcov/
+.coverage
+.pytest_cache/

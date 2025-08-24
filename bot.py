@@ -41,16 +41,16 @@ HELP_MESSAGE = """
 3. Нажмите "Заказать"
 4. Мы свяжемся с вами для уточнения деталей
 
-💬 По всем вопросам пишите @aa_design
-📸 Наши работы: @aa_design_channel
+💬 По всем вопросам пишите @cosmeticsourc
+📸 Наши работы: @aadesingmag
 """
 
 CONTACT_MESSAGE = """
 📞 Наши контакты:
 
-📱 Telegram: @aa_design
-📷 Instagram: @aa.design.journals
-📢 Канал: @aa_design_channel
+📱 Менеджер: @cosmeticsourc
+📷 Instagram: @aadesingmag
+📢 Канал: @aadesingmag
 
 Пишите в любое время!
 Ответим в течение 30 минут в рабочее время (10:00-20:00 МСК)
@@ -146,7 +146,7 @@ async def web_app_data(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 Наш менеджер свяжется с вами в течение 30 минут для уточнения деталей.
 
-Если у вас есть вопросы, пишите @aa_design
+Если у вас есть вопросы, пишите @cosmeticsourc
 """
             await update.message.reply_text(
                 confirmation_message,

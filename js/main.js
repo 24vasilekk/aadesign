@@ -242,6 +242,32 @@ const Shop = {
     },
     
     handleOrder(service) {
+        // Создаем сообщение для менеджера в зависимости от услуги
+        let managerMessage = '';
+        const serviceTitle = service.title.toLowerCase();
+        
+        if (serviceTitle.includes('размер s')) {
+            managerMessage = 'Здравствуйте! Хочу заказать журнал размера S (до 12 страниц) за 3799₽. Расскажите, пожалуйста, подробнее о процессе заказа.';
+        } else if (serviceTitle.includes('размер m')) {
+            managerMessage = 'Здравствуйте! Меня интересует журнал размера M (до 16 страниц) за 4799₽. Как можно оформить заказ?';
+        } else if (serviceTitle.includes('размер l')) {
+            managerMessage = 'Привет! Хотел бы заказать журнал размера L (до 20 страниц) за 5799₽. Что нужно для начала работы?';
+        } else if (serviceTitle.includes('размер xl')) {
+            managerMessage = 'Добрый день! Интересует журнал размера XL (до 30 страниц) за 7799₽. Можете рассказать о возможностях?';
+        } else if (serviceTitle.includes('travel book')) {
+            managerMessage = 'Здравствуйте! Хочу заказать Travel Book на 20 страниц за 3799₽. Какие материалы нужно подготовить?';
+        } else if (serviceTitle.includes('express')) {
+            managerMessage = 'Добрый день! Мне нужен срочный заказ EXPRESS за 9799₽. Какие сроки и условия?';
+        } else if (serviceTitle.includes('готовый вариант')) {
+            managerMessage = 'Привет! Интересует готовый вариант журнала за 2799₽. Можно посмотреть доступные шаблоны?';
+        } else {
+            managerMessage = `Здравствуйте! Хочу заказать ${service.title} за ${service.price}. Расскажите подробнее об услуге.`;
+        }
+        
+        // Открываем диалог с менеджером
+        const managerUrl = `https://t.me/cosmeticsourc?text=${encodeURIComponent(managerMessage)}`;
+        
+        // Отправляем данные в Telegram
         const orderData = {
             action: 'order',
             service: service.title,
@@ -251,29 +277,16 @@ const Shop = {
             timestamp: new Date().toISOString()
         };
         
-        // Add to cart
-        this.addToCart(orderData);
-        
-        // Show confirmation
-        const message = `${service.title} добавлен в корзину!\n\nЦена: ${service.price}\n${service.time}`;
-        TelegramApp.showAlert(message);
-        
-        // Send to Telegram
         TelegramApp.sendData(orderData);
         
+        // Открываем ссылку на менеджера
         if (TelegramApp.tg) {
-            setTimeout(() => {
-                TelegramApp.tg.close();
-            }, 2000); // Закрыть через 2 секунды
+            TelegramApp.tg.openTelegramLink(managerUrl);
+        } else {
+            window.open(managerUrl, '_blank');
         }
-
-        // Show main button if cart has items
-        if (this.cart.length > 0 && TelegramApp.tg) {
-            TelegramApp.tg.MainButton.show();
-            TelegramApp.tg.MainButton.onClick(() => {
-                this.checkout();
-            });
-        }
+        
+        TelegramApp.hapticFeedback('success');
     },
     
     addToCart(item) {
@@ -499,9 +512,9 @@ const FAQ = {
 // ================================
 const Contacts = {
     links: [
-        'https://t.me/aa_design',
-        'https://instagram.com/aa.design.journals',
-        'https://t.me/aa_design_channel'
+        'https://t.me/cosmeticsourc',
+        'https://instagram.com/aadesingmag',
+        'https://t.me/aadesingmag'
     ],
     
     init() {
@@ -541,12 +554,132 @@ const Contacts = {
 // ================================
 const Ideas = {
     ideas: [
-        { icon: '📅', title: 'Хронология', desc: 'История знакомства и важные даты' },
-        { icon: '💌', title: 'Письма', desc: 'Личные послания и пожелания' },
-        { icon: '🎬', title: 'Моменты', desc: 'Любимые фильмы, песни, места' },
-        { icon: '✈️', title: 'Путешествия', desc: 'Карты и фото из поездок' },
-        { icon: '🎯', title: 'Мечты', desc: 'Общие планы и цели' },
-        { icon: '🎨', title: 'Творчество', desc: 'Рисунки, стихи, цитаты' }
+        { 
+            key: 'editor-letter', 
+            title: 'Письмо редактора', 
+            desc: 'Вступительное слово о создании журнала...',
+            fullDesc: 'Обычно его пишет человек, который и занимается разработкой дизайна вместе с нами. Напишите в этом развороте "вступление", расскажите о том как вы старались создать этот журнал и вложили всю свою любовь и заботу к человеку.'
+        },
+        { 
+            key: 'contents', 
+            title: 'Содержание', 
+            desc: 'Знакомство с героем и планом журнала...',
+            fullDesc: 'Познакомимся с нашим героем и напишем, что его ждет в этом журнале.'
+        },
+        { 
+            key: 'meeting-story', 
+            title: 'История знакомства', 
+            desc: 'Начало вашей удивительной истории...',
+            fullDesc: 'Откуда же началась ваша история знакомства.'
+        },
+        { 
+            key: 'life-game', 
+            title: 'Игра "Жизнь"', 
+            desc: 'Жизненная история в формате игры-бродилки...',
+            fullDesc: 'Можно оформить историю жизни человека в игру-бродилку.'
+        },
+        { 
+            key: 'year-tour', 
+            title: 'Тур по году', 
+            desc: 'Яркие моменты и события последнего года...',
+            fullDesc: 'Представить все яркие моменты и события последнего года.'
+        },
+        { 
+            key: 'favorite-movie', 
+            title: 'Любимый фильм/сериал', 
+            desc: 'Рассказ о любимом кинопроизведении...',
+            fullDesc: 'Напишите про любимый фильм вашего героя.'
+        },
+        { 
+            key: 'birth', 
+            title: 'Рождение на свет', 
+            desc: 'Время и место появления, первые фото...',
+            fullDesc: 'Написать время и место рождения, вес, рост, цвет глаз, знак зодиака, добавить фото первых дней.'
+        },
+        { 
+            key: 'for-you', 
+            title: 'Ради тебя', 
+            desc: 'На что вы готовы ради этого человека...',
+            fullDesc: 'Написать на что вы готовы ради этого человека.'
+        },
+        { 
+            key: 'beloved-pet', 
+            title: 'Любимый питомец', 
+            desc: 'История появления четвероногого друга...',
+            fullDesc: 'История появления питомца в жизни человека, как его зовут и его фотографии.'
+        },
+        { 
+            key: 'memory-gallery', 
+            title: 'Галерея воспоминаний', 
+            desc: 'Фотографии ярких моментов с подписями...',
+            fullDesc: 'Страничка с фотографиями самых ярких воспоминаний с подписями или датами.'
+        },
+        { 
+            key: 'twenty-years-later', 
+            title: 'Через 20 лет ты', 
+            desc: 'Предположения о будущем человека...',
+            fullDesc: 'Предположите кем станет человек через 20 лет, где будет работать, где жить, какие будут ценности и т.д.'
+        },
+        { 
+            key: 'associations', 
+            title: 'Разворот ассоциаций', 
+            desc: 'Персонажи и образы, напоминающие героя...',
+            fullDesc: 'Если ваш друг напоминает вам какого-то персонажа из фильма или всплывает в голове при включении песни - запечатлейте это в альбоме.'
+        },
+        { 
+            key: 'my-friends', 
+            title: 'Разворот "Мои друзья"', 
+            desc: 'Пожелания и послания от близких людей...',
+            fullDesc: 'Пусть каждый друг напишет свои пожелания, послание в будущее или смешную историю из прошлого.'
+        },
+        { 
+            key: 'adventure-map', 
+            title: 'Карта приключений', 
+            desc: 'Важные места и маршруты воспоминаний...',
+            fullDesc: 'У вас есть важные места для вас обоих? Создайте карту приключений! Например, добавить маршрут идеального дня или подписать воспоминания с каждого места.'
+        },
+        { 
+            key: 'our-quotes', 
+            title: 'Наша цитата', 
+            desc: 'Коллекция легендарных выражений...',
+            fullDesc: 'У каждого из нас есть выражения "Которые стали легендарными" Пусть этот разворот станет коллекцией цитат твоего друга.'
+        },
+        { 
+            key: 'time-capsule', 
+            title: 'Капсула времени', 
+            desc: 'Дорогие мелочи и теплые воспоминания...',
+            fullDesc: 'Добавьте сюда свои дорогие мелочи: Открытки, билеты, браслеты с концертов и теплые воспоминания.'
+        },
+        { 
+            key: 'dream-page', 
+            title: 'Разворот мечты', 
+            desc: 'Место для будущих планов и желаний...',
+            fullDesc: 'А здесь место для того, что еще впереди. У твоего друга есть страна в которую он хочет попасть? Или машина мечты? Добавь все сюда (В том числе и друга на странице, будто его мечта уже сбылась).'
+        },
+        { 
+            key: 'recipe', 
+            title: 'Разворот с рецептом', 
+            desc: 'Семейные рецепты из поколения в поколение...',
+            fullDesc: 'У вашей семьи есть рецепты, которые передаются из поколения в поколение? Чтобы сохранить их добавь семейный рецепт на страницы.'
+        },
+        { 
+            key: 'music', 
+            title: 'Музыкальный разворот', 
+            desc: 'Мелодии, ассоциирующиеся с человеком...',
+            fullDesc: 'Добавьте музыку, которая ассоциируется с человеком, кому вы посвящаете журнал.'
+        },
+        { 
+            key: 'hobby', 
+            title: 'Хобби/любимое дело', 
+            desc: 'История увлечения и его значение...',
+            fullDesc: 'История человека с этим делом, почему оно так дорого, общая полезная информация, возникновение дела.'
+        },
+        { 
+            key: 'astrology', 
+            title: 'Натальная карта/расклад таро', 
+            desc: 'Персональная астрологическая карта...',
+            fullDesc: 'Ваш герой увлекается астрологией? Давайте создадим его собственную натальную карту и вставим ее в журнал.'
+        }
     ],
     
     init() {
@@ -556,9 +689,10 @@ const Ideas = {
     setupIdeaCards() {
         const ideaCards = document.querySelectorAll('.idea-card');
         
-        ideaCards.forEach((card, index) => {
+        ideaCards.forEach((card) => {
             card.addEventListener('click', () => {
-                const idea = this.ideas[index];
+                const ideaKey = card.dataset.idea;
+                const idea = this.ideas.find(item => item.key === ideaKey);
                 if (idea) {
                     this.showIdeaDetails(idea);
                     TelegramApp.hapticFeedback('light');
@@ -568,7 +702,7 @@ const Ideas = {
     },
     
     showIdeaDetails(idea) {
-        const message = `${idea.icon} ${idea.title}\n\n${idea.desc}\n\nХотите добавить это в журнал?`;
+        const message = `${idea.title}\n\n${idea.fullDesc}\n\nХотите добавить это в журнал?`;
         
         TelegramApp.showConfirm(message, (confirmed) => {
             if (confirmed) {

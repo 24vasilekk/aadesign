@@ -1,7 +1,33 @@
 {
   "name": "aadesign-web",
-  "version": "1.0.0",
+  "version": "2.0.0",
+  "description": "A&A Design - Кастомные журналы Telegram Web App",
+  "main": "index.html",
   "scripts": {
-    "start": "npx serve -s . -l $PORT"
+    "start": "npx serve -s . -l $PORT",
+    "dev": "npx serve -s . -l 3000",
+    "build": "echo 'No build step required for static files'",
+    "test": "echo 'No tests specified'"
+  },
+  "keywords": [
+    "telegram",
+    "webapp",
+    "journals",
+    "custom",
+    "design",
+    "aadesign"
+  ],
+  "author": "A&A Design",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "serve": "^14.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aadesign/web-app"
+  },
+  "engines": {
+    "node": ">=14.0.0"
   }
 }
