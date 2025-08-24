@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="A&A Design - Кастомные журналы на заказ. Уникальный подарок с душой для ваших близких.">
+    <meta name="keywords" content="кастомный журнал, персональный журнал, подарок, дизайн, фотокнига">
+    <meta name="author" content="A&A Design">
+    
+    <!-- Favicon (добавьте свою иконку) -->
+    <link rel="icon" type="image/png" href="assets/icons/favicon.png">
+    
+    <title>A&A Design - Кастомные журналы</title>
+    
+    <!-- Telegram Web App -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <!-- Preload fonts for better performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">A&A DESIGN</div>
+        <div class="tagline">Кастомные журналы с любовью 🎀</div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="nav-tabs">
+        <button class="nav-tab active" data-section="shop">Магазин</button>
+        <button class="nav-tab" data-section="cases">Кейсы</button>
+        <button class="nav-tab" data-section="reviews">Отзывы</button>
+        <button class="nav-tab" data-section="ideas">Идеи</button>
+        <button class="nav-tab" data-section="faq">FAQ</button>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="content">
+        <!-- Shop Section -->
+        <section id="shop" class="section active">
+            <div class="hero">
+                <h1>Уникальный подарок с душой ❤️</h1>
+                <p>Кастомный журнал — это не просто подарок, это сохраненные эмоции и воспоминания в красивой печатной форме. Идеально для тех, кто ценит творчество и оригинальность.</p>
+            </div>
+
+            <div class="services">
+                <div class="service-card">
+                    <div class="service-header">
+                        <span class="service-title">Размер S</span>
+                        <span class="service-price">3799₽</span>
+                    </div>
+                    <div class="service-details">До 12 страниц вашей истории</div>
+                    <div class="service-time">⏱ Изготовление: 5-7 дней</div>
+                    <button class="order-btn" data-product="size-s">Заказать</button>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-header">
+                        <span class="service-title">Размер M</span>
+                        <span class="service-price">4799₽</span>
+                    </div>
+                    <div class="service-details">До 16 страниц воспоминаний</div>
+                    <div class="service-time">⏱ Изготовление: 5-8 дней</div>
+                    <button class="order-btn" data-product="size-m">Заказать</button>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-header">
+                        <span class="service-title">Размер L</span>
+                        <span class="service-price">5799₽</span>
+                    </div>
+                    <div class="service-details">До 20 страниц для большой истории</div>
+                    <div class="service-time">⏱ Изготовление: 7-10 дней</div>
+                    <button class="order-btn" data-product="size-l">Заказать</button>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-header">
+                        <span class="service-title">Размер XL</span>
+                        <span class="service-price">7799₽</span>
+                    </div>
+                    <div class="service-details">До 30 страниц полного счастья</div>
+                    <div class="service-time">⏱ Изготовление: 10-14 дней</div>
+                    <button class="order-btn" data-product="size-xl">Заказать</button>
+                </div>
+
+                <div class="service-card express">
+                    <div class="service-header">
+                        <span class="service-title">⚡ EXPRESS</span>
+                        <span class="service-price">9799₽</span>
+                    </div>
+                    <div class="service-details">Любое количество страниц</div>
+                    <div class="service-time">🔥 Изготовление: 3-5 дней</div>
+                    <button class="order-btn" data-product="express">Срочный заказ</button>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-header">
+                        <span class="service-title">Готовый вариант</span>
+                        <span class="service-price">2799₽</span>
+                    </div>
+                    <div class="service-details">3 шаблона на выбор, до 16 страниц</div>
+                    <div class="service-time">✨ Изготовление: 1-2 дня</div>
+                    <button class="order-btn" data-product="template">Выбрать шаблон</button>
+                </div>
+            </div>
+
+            <!-- About Section in Shop -->
+            <div class="about-section" style="margin-top: 40px; padding: 20px; background: linear-gradient(135deg, var(--light-pink), var(--primary-pink)); border-radius: 15px;">
+                <h2 style="text-align: center; margin-bottom: 20px;">🎀 О наших журналах 🎀</h2>
+                <div style="font-size: 14px; line-height: 1.8; opacity: 0.9;">
+                    <p><strong>Кастомный журнал</strong> — это уникальный и запоминающийся подарок, который покажет вашу любовь и внимание к человеку. Такой подарок может быть особенно ценным для тех, кому нравится сохранять воспоминания в печатном виде, а также для тех, кто ценит творчество и оригинальность больше, чем материальные подарки.</p>
+                    
+                    <p style="margin-top: 15px;">❤️ <strong>Индивидуальный подход</strong> ❤️<br>
+                    Поможем с идеями для журнала, предоставим примеры работ, воплотим вашу задумку в реальность.</p>
+                    
+                    <p style="margin-top: 15px;">🎀 <strong>Для кого подойдет такой подарок?</strong> 🎀<br>
+                    Кастомный журнал — идеальный подарок для всех и на любой праздник. Для мамы, для папы, для парня, для друга и даже для сестры! С таким подарком вы надолго оставите яркие и запоминающиеся эмоции не только в памяти, но и на бумаге!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cases Section -->
+        <section id="cases" class="section">
+            <h2 style="margin-bottom: 20px; text-align: center;">Наши работы</h2>
+            <div class="cases-grid">
+                <div class="case-card">
+                    <div class="case-image">
+                        <!-- Место для изображения -->
+                        <img src="assets/images/case1.jpg" alt="Журнал для мамы" onerror="this.style.display='none'; this.parentElement.innerHTML='📸';" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="case-content">
+                        <h3 class="case-title">Журнал для мамы</h3>
+                        <p class="case-description">Трогательная история о любви дочери к маме. 20 страниц воспоминаний, семейных фото и теплых слов.</p>
+                    </div>
+                </div>
+                
+                <div class="case-card">
+                    <div class="case-image">
+                        <!-- Место для изображения -->
+                        <img src="assets/images/case2.jpg" alt="Love Story" onerror="this.style.display='none'; this.parentElement.innerHTML='📸';" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="case-content">
+                        <h3 class="case-title">Love Story</h3>
+                        <p class="case-description">Романтический журнал ко дню годовщины. История знакомства, первые свидания, общие путешествия.</p>
+                    </div>
+                </div>
+
+                <div class="case-card">
+                    <div class="case-image">
+                        <!-- Место для изображения -->
+                        <img src="assets/images/case3.jpg" alt="Лучшей подруге" onerror="this.style.display='none'; this.parentElement.innerHTML='📸';" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="case-content">
+                        <h3 class="case-title">Лучшей подруге</h3>
+                        <p class="case-description">Веселый журнал с общими фото, шутками и воспоминаниями о приключениях.</p>
+                    </div>
+                </div>
+
+                <div class="case-card">
+                    <div class="case-image">
+                        <!-- Место для изображения -->
+                        <img src="assets/images/case4.jpg" alt="Семейная история" onerror="this.style.display='none'; this.parentElement.innerHTML='📸';" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="case-content">
+                        <h3 class="case-title">Семейная история</h3>
+                        <p class="case-description">История трех поколений в одном журнале. Старые фотографии, генеалогическое древо, семейные традиции.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reviews Section -->
+        <section id="reviews" class="section">
+            <h2 style="margin-bottom: 20px; text-align: center;">Отзывы клиентов</h2>
+            <div class="reviews-container">
+                <div class="reviews-slider" id="reviewsSlider">
+                    <div class="review-card">
+                        <div class="review-photo">
+                            <!-- Место для фото отзыва -->
+                            <img src="assets/images/review1.jpg" alt="Отзыв 1" onerror="this.style.display='none'; this.parentElement.innerHTML='📷';" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <p class="review-text">"Заказывала журнал маме на день рождения. Она плакала от счастья! Качество печати отличное, дизайн превзошел все ожидания."</p>
+                        <p class="review-author">— Анна, Москва</p>
+                    </div>
+                    
+                    <div class="review-card">
+                        <div class="review-photo">
+                            <!-- Место для фото отзыва -->
+                            <img src="assets/images/review2.jpg" alt="Отзыв 2" onerror="this.style.display='none'; this.parentElement.innerHTML='📷';" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <p class="review-text">"Делал подарок девушке на годовщину. Ребята помогли с идеями, получилось очень душевно. Рекомендую!"</p>
+                        <p class="review-author">— Максим, СПб</p>
+                    </div>
+                    
+                    <div class="review-card">
+                        <div class="review-photo">
+                            <!-- Место для фото отзыва -->
+                            <img src="assets/images/review3.jpg" alt="Отзыв 3" onerror="this.style.display='none'; this.parentElement.innerHTML='📷';" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <p class="review-text">"Очень крутая идея для подарка! Заказывала для подруги, она была в восторге. Быстро сделали, качество супер!"</p>
+                        <p class="review-author">— Елена, Казань</p>
+                    </div>
+                </div>
+                <div class="slider-dots">
+                    <span class="dot active" data-slide="0"></span>
+                    <span class="dot" data-slide="1"></span>
+                    <span class="dot" data-slide="2"></span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ideas Section -->
+        <section id="ideas" class="section">
+            <h2 style="margin-bottom: 20px; text-align: center;">Что добавить в журнал?</h2>
+            <div class="ideas-grid">
+                <div class="idea-card" data-idea="chronology">
+                    <div class="idea-icon">📅</div>
+                    <div class="idea-title">Хронология</div>
+                    <div class="idea-desc">История знакомства и важные даты</div>
+                </div>
+                
+                <div class="idea-card" data-idea="letters">
+                    <div class="idea-icon">💌</div>
+                    <div class="idea-title">Письма</div>
+                    <div class="idea-desc">Личные послания и пожелания</div>
+                </div>
+                
+                <div class="idea-card" data-idea="moments">
+                    <div class="idea-icon">🎬</div>
+                    <div class="idea-title">Моменты</div>
+                    <div class="idea-desc">Любимые фильмы, песни, места</div>
+                </div>
+                
+                <div class="idea-card" data-idea="travels">
+                    <div class="idea-icon">✈️</div>
+                    <div class="idea-title">Путешествия</div>
+                    <div class="idea-desc">Карты и фото из поездок</div>
+                </div>
+                
+                <div class="idea-card" data-idea="dreams">
+                    <div class="idea-icon">🎯</div>
+                    <div class="idea-title">Мечты</div>
+                    <div class="idea-desc">Общие планы и цели</div>
+                </div>
+                
+                <div class="idea-card" data-idea="creativity">
+                    <div class="idea-icon">🎨</div>
+                    <div class="idea-title">Творчество</div>
+                    <div class="idea-desc">Рисунки, стихи, цитаты</div>
+                </div>
+            </div>
+
+            <!-- Additional Ideas Info -->
+            <div style="margin-top: 30px; padding: 20px; background: var(--white); border-radius: 15px; border: 2px solid var(--light-pink);">
+                <h3 style="text-align: center; margin-bottom: 15px; color: var(--accent-red);">💡 Советы по созданию журнала</h3>
+                <ul style="font-size: 14px; line-height: 1.8; list-style: none; padding: 0;">
+                    <li style="margin-bottom: 10px;">📌 Выберите главную тему журнала — любовь, дружба, семья</li>
+                    <li style="margin-bottom: 10px;">📸 Подготовьте качественные фотографии в высоком разрешении</li>
+                    <li style="margin-bottom: 10px;">✍️ Напишите личные послания и воспоминания</li>
+                    <li style="margin-bottom: 10px;">🎨 Добавьте креативные элементы — рисунки, стикеры, цитаты</li>
+                    <li style="margin-bottom: 10px;">📅 Укажите важные даты и события</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="section">
+            <h2 style="margin-bottom: 20px; text-align: center;">Часто задаваемые вопросы</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">Какой формат журнала?</div>
+                <div class="faq-answer">
+                    Мы печатаем журналы формата А4 на качественной плотной бумаге. Обложка ламинированная, страницы сшиты профессиональным способом.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Как происходит процесс заказа?</div>
+                <div class="faq-answer">
+                    После оформления заказа наш дизайнер свяжется с вами для обсуждения деталей. Вы присылаете фото и тексты, мы создаем макет. После согласования отправляем в печать.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Можно ли внести правки в макет?</div>
+                <div class="faq-answer">
+                    Конечно! Мы предоставляем макет на согласование и вносим до 3-х правок бесплатно. Ваш журнал будет именно таким, как вы хотите.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Как осуществляется доставка?</div>
+                <div class="faq-answer">
+                    Доставка по Москве курьером — 300₽, самовывоз бесплатно. Отправляем по всей России через СДЭК или Почту России.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Какие фотографии подходят для журнала?</div>
+                <div class="faq-answer">
+                    Лучше всего подходят фотографии в высоком разрешении (от 1920x1080). Можно использовать фото с телефона, главное чтобы они были четкими. Мы поможем с обработкой и ретушью при необходимости.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Сколько времени занимает создание макета?</div>
+                <div class="faq-answer">
+                    Создание макета занимает 1-2 дня после получения всех материалов от вас. После утверждения макета начинается процесс печати согласно выбранному тарифу.
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <h3 class="footer-title">Контакты</h3>
+        <div class="contact-links">
+            <a href="https://t.me/aa_design" class="contact-link" aria-label="Telegram">📱</a>
+            <a href="https://instagram.com/aa.design.journals" class="contact-link" aria-label="Instagram">📷</a>
+            <a href="https://t.me/aa_design_channel" class="contact-link" aria-label="Telegram Channel">📢</a>
+        </div>
+        <p style="font-size: 14px; margin-bottom: 10px;">Пишите нам в любое время!</p>
+        <p style="font-size: 12px; opacity: 0.8;">Telegram: @aa_design</p>
+        <p style="font-size: 12px; opacity: 0.8;">Instagram: @aa.design.journals</p>
+        <p style="font-size: 12px; opacity: 0.8;">Канал: @aa_design_channel</p>
+        
+        <!-- Additional Footer Info -->
+        <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1);">
+            <p style="font-size: 11px; opacity: 0.6; margin-bottom: 10px;">
+                Работаем с 2023 года • Более 500 довольных клиентов • Доставка по всей России
+            </p>
+        </div>
+        
+        <div class="footer-text">
+            © 2024 A&A Design. Создаем журналы с любовью 🎀
+        </div>
+    </footer>
+
+    <!-- Cart Notification (hidden by default) -->
+    <div id="cartNotification" style="display: none; position: fixed; top: 20px; right: 20px; background: var(--accent-red); color: white; padding: 15px 20px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); z-index: 1000; animation: slideIn 0.3s ease;">
+        <span id="cartMessage">Товар добавлен в корзину!</span>
+    </div>
+
+    <!-- Loading Indicator -->
+    <div id="loadingIndicator" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 9999;">
+        <div class="loading"></div>
+    </div>
+
+    <!-- Custom Scripts -->
+    <script src="js/main.js"></script>
+    
+    <!-- Additional inline script for immediate initialization -->
+    <script>
+        // Immediate initialization for better UX
+        if (window.Telegram && window.Telegram.WebApp) {
+            window.Telegram.WebApp.ready();
+            window.Telegram.WebApp.expand();
+        }
+    </script>
+</body>
+</html>
