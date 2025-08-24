@@ -1,11 +1,7 @@
 {
   "name": "aadesign-web",
   "version": "1.0.0",
-  "description": "A&A Design - Telegram Web App",
   "scripts": {
     "start": "npx serve -s . -l $PORT"
-  },
-  "dependencies": {
-    "serve": "^14.0.0"
   }
 }

@@ -1,8 +1,0 @@
-[phases.setup]
-nixPkgs = ["nodejs-18_x"]
-
-[staticAssets]
-enabled = true
-
-[start]
-cmd = "npx serve -s . -l $PORT"
