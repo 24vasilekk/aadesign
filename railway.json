@@ -4,34 +4,8 @@
     "builder": "NIXPACKS"
   },
   "deploy": {
-    "numReplicas": 1,
+    "startCommand": "python server.py",
     "restartPolicyType": "ON_FAILURE",
     "restartPolicyMaxRetries": 10
-  },
-  "services": [
-    {
-      "name": "web",
-      "source": {
-        "type": "static",
-        "buildCommand": "",
-        "watchPatterns": [
-          "index.html",
-          "css/**",
-          "js/**",
-          "assets/**"
-        ]
-      }
-    },
-    {
-      "name": "bot",
-      "source": {
-        "type": "python",
-        "startCommand": "python bot.py",
-        "watchPatterns": [
-          "bot.py",
-          "requirements.txt"
-        ]
-      }
-    }
-  ]
+  }
 }
