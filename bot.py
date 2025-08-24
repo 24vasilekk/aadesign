@@ -1,4 +1,5 @@
 import logging
+import os
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, WebAppInfo
 from telegram.ext import Application, CommandHandler, MessageHandler, filters, ContextTypes, CallbackQueryHandler
 import json
@@ -10,12 +11,14 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-# ВАЖНО: Замените на ваш токен от @BotFather
-BOT_TOKEN = "8285221140:AAEzqIyXzdNlj5dQhmQD2uIWCUG_mooTBrg"
-# Замените на ваш URL сайта
-WEB_APP_URL = "https://aadesign.store/"
-# ID администратора (ваш Telegram ID)
-ADMIN_ID = 1240742785  # Замените на ваш ID
+# Получаем настройки из переменных окружения
+BOT_TOKEN = os.environ.get("BOT_TOKEN", "8285221140:AAEzqIyXzdNlj5dQhmQD2uIWCUG_mooTBrg")
+WEB_APP_URL = os.environ.get("WEB_APP_URL", "https://aadesign.store/")
+ADMIN_ID = int(os.environ.get("ADMIN_ID", "1240742785"))
+
+# Проверяем наличие токена
+if not BOT_TOKEN:
+    raise ValueError("BOT_TOKEN не установлен!")
 
 # Тексты сообщений
 WELCOME_MESSAGE = """
@@ -70,12 +73,14 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
     
-    # Отправляем сообщение с фото (если есть)
+    # Отправляем сообщение
     await update.message.reply_text(
         WELCOME_MESSAGE,
         reply_markup=reply_markup,
         parse_mode='HTML'
     )
+    
+    logger.info(f"User {update.message.from_user.username} started bot")
 
 # Команда /help
 async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -155,8 +160,9 @@ async def web_app_data(update: Update, context: ContextTypes.DEFAULT_TYPE):
                     text=order_message,
                     parse_mode='HTML'
                 )
+                logger.info(f"Order notification sent to admin")
             except Exception as e:
-                logger.error(f"Не удалось отправить сообщение админу: {e}")
+                logger.error(f"Failed to send message to admin: {e}")
         
         elif data.get('action') == 'checkout':
             # Обработка оформления корзины
@@ -194,12 +200,12 @@ async def web_app_data(update: Update, context: ContextTypes.DEFAULT_TYPE):
                     parse_mode='HTML'
                 )
             except Exception as e:
-                logger.error(f"Не удалось отправить сообщение админу: {e}")
+                logger.error(f"Failed to send message to admin: {e}")
         
         elif data.get('action') == 'contact_click':
             # Отслеживание клика по контактам
             platform = data.get('platform', 'unknown')
-            logger.info(f"Пользователь {update.message.from_user.username} кликнул на {platform}")
+            logger.info(f"User {update.message.from_user.username} clicked on {platform}")
         
         elif data.get('action') == 'idea_selected':
             # Пользователь выбрал идею для журнала
@@ -211,7 +217,7 @@ async def web_app_data(update: Update, context: ContextTypes.DEFAULT_TYPE):
             )
             
     except json.JSONDecodeError:
-        logger.error(f"Не удалось распарсить данные: {web_app_data}")
+        logger.error(f"Failed to parse data: {web_app_data}")
         await update.message.reply_text(
             "Произошла ошибка при обработке данных. Пожалуйста, попробуйте еще раз."
         )
@@ -259,6 +265,10 @@ async def get_id(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 def main():
     """Запуск бота"""
+    logger.info(f"Starting bot with token: {BOT_TOKEN[:10]}...")
+    logger.info(f"Web App URL: {WEB_APP_URL}")
+    logger.info(f"Admin ID: {ADMIN_ID}")
+    
     # Создаем приложение
     application = Application.builder().token(BOT_TOKEN).build()
     
@@ -278,7 +288,11 @@ def main():
     application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_message))
     
     # Запускаем бота
-    print("🤖 Бот запущен!")
+    logger.info("🤖 Bot is starting...")
+    print("🤖 A&A Design Bot is running!")
+    print(f"📱 Web App: {WEB_APP_URL}")
+    print("Press Ctrl+C to stop")
+    
     application.run_polling(allowed_updates=Update.ALL_TYPES)
 
 if __name__ == '__main__':
