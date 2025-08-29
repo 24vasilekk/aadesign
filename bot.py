@@ -30,6 +30,8 @@ WELCOME_MESSAGE = """
 ⏱ Изготовление от 1 до 14 дней
 🚚 Доставка по всей России
 
+✨ Новинка: Интерактивные 3D книги с кейсами!
+
 Нажмите кнопку "🛍 Магазин" ниже, чтобы оформить заказ!
 """
 
@@ -40,6 +42,11 @@ HELP_MESSAGE = """
 2. Выберите размер журнала
 3. Нажмите "Заказать"
 4. Мы свяжемся с вами для уточнения деталей
+
+📖 В разделе "Кейсы" смотрите наши 3D книги:
+• Нажмите на книгу, чтобы перелистнуть страницы
+• Изучите примеры наших работ
+• Вдохновляйтесь идеями для своего заказа
 
 💬 По всем вопросам пишите @cosmeticsourc
 📸 Наши работы: @aadesingmag
@@ -54,6 +61,8 @@ CONTACT_MESSAGE = """
 
 Пишите в любое время!
 Ответим в течение 30 минут в рабочее время (10:00-20:00 МСК)
+
+🎀 Более 100 довольных клиентов с 2023 года
 """
 
 # Команда /start
@@ -69,7 +78,8 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
         [
             InlineKeyboardButton("📞 Контакты", callback_data="contacts"),
             InlineKeyboardButton("❓ Помощь", callback_data="help")
-        ]
+        ],
+        [InlineKeyboardButton("📖 Посмотреть 3D кейсы", callback_data="cases_info")]
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
     
@@ -102,6 +112,38 @@ async def button_callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await query.message.reply_text(HELP_MESSAGE)
     elif query.data == "contacts":
         await query.message.reply_text(CONTACT_MESSAGE)
+    elif query.data == "cases_info":
+        cases_info = """
+📖 <b>Интерактивные 3D книги с нашими кейсами!</b>
+
+В разделе "Кейсы" вы найдете 4 интерактивные 3D книги:
+
+📚 <b>Наши проекты:</b>
+• 🌸 Журнал для мамы
+• 💕 Love Story
+• 👭 Лучшей подруге  
+• 👨‍👩‍👧‍👦 Семейная история
+
+<b>Как пользоваться:</b>
+1. Перейдите в раздел "Кейсы"
+2. Нажмите на любую книгу
+3. Страницы перелистнутся, показав детали проекта
+4. Нажмите снова, чтобы вернуться к обложке
+
+Это поможет вам выбрать стиль для своего заказа! 🎨
+"""
+        
+        keyboard = [[InlineKeyboardButton(
+            text="📖 Открыть кейсы",
+            web_app=WebAppInfo(url=WEB_APP_URL + "#cases")
+        )]]
+        reply_markup = InlineKeyboardMarkup(keyboard)
+        
+        await query.message.reply_text(
+            cases_info,
+            reply_markup=reply_markup,
+            parse_mode='HTML'
+        )
 
 # Обработка данных из Web App
 async def web_app_data(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -146,6 +188,11 @@ async def web_app_data(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 Наш менеджер свяжется с вами в течение 30 минут для уточнения деталей.
 
+💡 <b>Пока ждете:</b>
+• Посмотрите 3D кейсы для вдохновения
+• Подготовьте фотографии для журнала
+• Подумайте о тематике и стиле
+
 Если у вас есть вопросы, пишите @cosmeticsourc
 """
             await update.message.reply_text(
@@ -163,6 +210,36 @@ async def web_app_data(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 logger.info(f"Order notification sent to admin")
             except Exception as e:
                 logger.error(f"Failed to send message to admin: {e}")
+        
+        elif data.get('action') == 'book_flip':
+            # Обработка взаимодействия с 3D книгами
+            book = data.get('data', {}).get('book', 'unknown')
+            action = data.get('data', {}).get('action', 'unknown')
+            
+            if action == 'open':
+                book_names = {
+                    '1': 'Журнал для мамы',
+                    '2': 'Love Story',
+                    '3': 'Лучшей подруге',
+                    '4': 'Семейная история'
+                }
+                book_name = book_names.get(book, f'Книга #{book}')
+                
+                response = f"📖 Вы открыли кейс: <b>{book_name}</b>\n\nПонравился стиль? Закажите похожий журнал!"
+                
+                keyboard = [[InlineKeyboardButton(
+                    text="🛒 Заказать похожий",
+                    web_app=WebAppInfo(url=WEB_APP_URL + "#shop")
+                )]]
+                reply_markup = InlineKeyboardMarkup(keyboard)
+                
+                await update.message.reply_text(
+                    response,
+                    reply_markup=reply_markup,
+                    parse_mode='HTML'
+                )
+            
+            logger.info(f"Book flip: {book} - {action} by {update.message.from_user.username}")
         
         elif data.get('action') == 'checkout':
             # Обработка оформления корзины
@@ -188,7 +265,7 @@ async def web_app_data(update: Update, context: ContextTypes.DEFAULT_TYPE):
             
             # Отправляем подтверждение клиенту
             await update.message.reply_text(
-                f"✅ Заказ на сумму {total}₽ принят!\nМенеджер свяжется с вами в ближайшее время.",
+                f"✅ Заказ на сумму {total}₽ принят!\n\nМенеджер свяжется с вами в ближайшее время.\n\n💡 Рекомендуем посмотреть наши 3D кейсы для вдохновения!",
                 parse_mode='HTML'
             )
             
@@ -206,15 +283,21 @@ async def web_app_data(update: Update, context: ContextTypes.DEFAULT_TYPE):
             # Отслеживание клика по контактам
             platform = data.get('platform', 'unknown')
             logger.info(f"User {update.message.from_user.username} clicked on {platform}")
-        
-        elif data.get('action') == 'idea_selected':
-            # Пользователь выбрал идею для журнала
-            idea = data.get('idea', '')
             
-            await update.message.reply_text(
-                f"Отличная идея! Мы добавим '{idea}' в ваш журнал. 💡",
-                parse_mode='HTML'
-            )
+            # Отправляем благодарность
+            thanks_message = {
+                'telegram': "Спасибо! Вы переходите к нашему менеджеру 📱",
+                'instagram': "Отлично! Подписывайтесь на наш Instagram 📷", 
+                'channel': "Супер! Присоединяйтесь к нашему каналу 📢"
+            }
+            
+            if platform in thanks_message:
+                await update.message.reply_text(thanks_message[platform])
+        
+        elif data.get('action') == 'analytics':
+            # Аналитика (логируем для статистики)
+            event = data.get('event', {})
+            logger.info(f"Analytics: {event.get('name')} by {update.message.from_user.username}")
             
     except json.JSONDecodeError:
         logger.error(f"Failed to parse data: {web_app_data}")
@@ -228,7 +311,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     
     text = update.message.text.lower()
     
-    if "заказ" in text or "купить" in text or "цена" in text:
+    if any(word in text for word in ["заказ", "купить", "цена", "журнал", "книга"]):
         # Если спрашивают про заказ
         keyboard = [[InlineKeyboardButton(
             text="🛍 Открыть магазин",
@@ -237,24 +320,49 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
         reply_markup = InlineKeyboardMarkup(keyboard)
         
         await update.message.reply_text(
-            "Для оформления заказа откройте наш магазин:",
+            "Для оформления заказа откройте наш магазин с интерактивными 3D кейсами:",
             reply_markup=reply_markup
         )
     
-    elif "контакт" in text or "связь" in text:
+    elif any(word in text for word in ["кейс", "пример", "работы", "посмотреть"]):
+        # Если интересуются кейсами
+        keyboard = [[InlineKeyboardButton(
+            text="📖 Посмотреть 3D кейсы",
+            web_app=WebAppInfo(url=WEB_APP_URL + "#cases")
+        )]]
+        reply_markup = InlineKeyboardMarkup(keyboard)
+        
+        await update.message.reply_text(
+            "Посмотрите наши интерактивные 3D кейсы! Нажмите на книги, чтобы перелистнуть страницы:",
+            reply_markup=reply_markup
+        )
+    
+    elif any(word in text for word in ["контакт", "связь", "менеджер"]):
         await update.message.reply_text(CONTACT_MESSAGE)
     
-    elif "помощь" in text or "как" in text:
+    elif any(word in text for word in ["помощь", "как", "инструкция"]):
         await update.message.reply_text(HELP_MESSAGE)
     
     else:
-        # Дефолтный ответ
+        # Дефолтный ответ с 3D кейсами
+        keyboard = [
+            [InlineKeyboardButton(
+                text="🛍 Магазин",
+                web_app=WebAppInfo(url=WEB_APP_URL)
+            )],
+            [InlineKeyboardButton(
+                text="📖 3D Кейсы",
+                web_app=WebAppInfo(url=WEB_APP_URL + "#cases")
+            )]
+        ]
+        reply_markup = InlineKeyboardMarkup(keyboard)
+        
         await update.message.reply_text(
-            "Я могу помочь вам заказать кастомный журнал!\n"
-            "Используйте команды:\n"
-            "/start - Главное меню\n"
-            "/help - Помощь\n"
-            "/contacts - Контакты"
+            "Я помогу вам заказать кастомный журнал! 📚\n\n"
+            "🛍 Магазин - выберите размер и закажите\n"
+            "📖 3D Кейсы - посмотрите примеры работ\n\n"
+            "Команды: /help - помощь, /contacts - контакты",
+            reply_markup=reply_markup
         )
 
 # Команда для получения ID пользователя (для админа)
@@ -263,9 +371,39 @@ async def get_id(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user_id = update.message.from_user.id
     await update.message.reply_text(f"Ваш Telegram ID: `{user_id}`", parse_mode='Markdown')
 
+# Команда статистики (только для админа)
+async def stats_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Показывает статистику бота (только для админа)"""
+    if update.message.from_user.id != ADMIN_ID:
+        await update.message.reply_text("У вас нет прав для использования этой команды.")
+        return
+    
+    stats_message = """
+📊 <b>Статистика A&A Design Bot</b>
+
+🎀 Основные показатели:
+• Веб-приложение: активно
+• 3D кейсы: работают
+• Интеграция с Telegram: ✅
+
+📖 Функционал:
+• Интерактивные 3D книги
+• Система заказов
+• Аналитика взаимодействий
+• Автоматические уведомления
+
+🛍 Последние обновления:
+• Добавлены 3D книги с кейсами
+• Улучшена навигация
+• Добавлены haptic отклики
+"""
+    
+    await update.message.reply_text(stats_message, parse_mode='HTML')
+
 def main():
     """Запуск бота"""
-    logger.info(f"Starting bot with token: {BOT_TOKEN[:10]}...")
+    logger.info(f"Starting A&A Design bot with 3D cases...")
+    logger.info(f"Bot token: {BOT_TOKEN[:10]}...")
     logger.info(f"Web App URL: {WEB_APP_URL}")
     logger.info(f"Admin ID: {ADMIN_ID}")
     
@@ -277,6 +415,7 @@ def main():
     application.add_handler(CommandHandler("help", help_command))
     application.add_handler(CommandHandler("contacts", contacts_command))
     application.add_handler(CommandHandler("id", get_id))
+    application.add_handler(CommandHandler("stats", stats_command))
     
     # Обработчик callback кнопок
     application.add_handler(CallbackQueryHandler(button_callback))
@@ -288,9 +427,10 @@ def main():
     application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_message))
     
     # Запускаем бота
-    logger.info("🤖 Bot is starting...")
-    print("🤖 A&A Design Bot is running!")
+    logger.info("🎀 A&A Design Bot with 3D Cases is starting...")
+    print("🎀 A&A Design Bot is running!")
     print(f"📱 Web App: {WEB_APP_URL}")
+    print("📖 Features: 3D interactive books, order system, analytics")
     print("Press Ctrl+C to stop")
     
     application.run_polling(allowed_updates=Update.ALL_TYPES)

@@ -119,6 +119,11 @@ const Navigation = {
     
     navigateTo(sectionId) {
         if (this.currentSection !== sectionId) {
+            // Close all books when leaving cases section
+            if (this.currentSection === 'cases' && window.Books3D) {
+                Books3D.closeAllBooks();
+            }
+            
             this.history.push(sectionId);
             this.updateActiveSection(sectionId);
             this.currentSection = sectionId;
@@ -217,6 +222,120 @@ const Navigation = {
                 }
             }
         };
+    }
+};
+
+// ================================
+// 3D Books Functionality
+// ================================
+const Books3D = {
+    init() {
+        this.setupBooks();
+    },
+    
+    setupBooks() {
+        const bookContainers = document.querySelectorAll('.book-container');
+        
+        bookContainers.forEach(container => {
+            const book = container.querySelector('.book');
+            let isFlipped = false;
+            
+            book.addEventListener('click', (e) => {
+                e.preventDefault();
+                this.flipBook(container);
+                TelegramApp.hapticFeedback('medium');
+            });
+            
+            // Touch events for better mobile interaction
+            let touchStartTime = 0;
+            
+            book.addEventListener('touchstart', (e) => {
+                touchStartTime = Date.now();
+            });
+            
+            book.addEventListener('touchend', (e) => {
+                const touchDuration = Date.now() - touchStartTime;
+                if (touchDuration < 500) { // Quick tap
+                    e.preventDefault();
+                    this.flipBook(container);
+                    TelegramApp.hapticFeedback('medium');
+                }
+            });
+            
+            // Keyboard navigation
+            book.setAttribute('tabindex', '0');
+            book.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    this.flipBook(container);
+                    TelegramApp.hapticFeedback('medium');
+                }
+            });
+            
+            // Store initial state
+            container.dataset.flipped = 'false';
+        });
+    },
+    
+    flipBook(container) {
+        const isCurrentlyFlipped = container.dataset.flipped === 'true';
+        
+        if (isCurrentlyFlipped) {
+            // Flip back to cover
+            container.classList.remove('flipped');
+            container.dataset.flipped = 'false';
+            
+            // Track analytics
+            Analytics.track('book_flip', {
+                book: container.dataset.book,
+                action: 'close'
+            });
+        } else {
+            // Flip to description pages
+            container.classList.add('flipped');
+            container.dataset.flipped = 'true';
+            
+            // Track analytics
+            Analytics.track('book_flip', {
+                book: container.dataset.book,
+                action: 'open'
+            });
+        }
+    },
+    
+    // Auto-close books when switching sections
+    closeAllBooks() {
+        const bookContainers = document.querySelectorAll('.book-container');
+        bookContainers.forEach(container => {
+            container.classList.remove('flipped');
+            container.dataset.flipped = 'false';
+        });
+    },
+    
+    // Demo mode - automatically flip through books
+    startDemo() {
+        const bookContainers = document.querySelectorAll('.book-container');
+        let currentIndex = 0;
+        
+        const flipNext = () => {
+            // Close all books first
+            this.closeAllBooks();
+            
+            // Flip current book
+            setTimeout(() => {
+                if (bookContainers[currentIndex]) {
+                    this.flipBook(bookContainers[currentIndex]);
+                }
+                
+                currentIndex = (currentIndex + 1) % bookContainers.length;
+                
+                // Schedule next flip
+                setTimeout(flipNext, 3000);
+            }, 500);
+        };
+        
+        // Start demo after a delay
+        setTimeout(flipNext, 2000);
     }
 };
 
@@ -712,6 +831,7 @@ const App = {
         TelegramApp.init();
         Navigation.init();
         Shop.init();
+        Books3D.init();
         ReviewsSlider.init();
         FAQ.init();
         Contacts.init();
@@ -800,6 +920,7 @@ window.AADesignApp = {
     TelegramApp,
     Navigation,
     Shop,
+    Books3D,
     ReviewsSlider,
     FAQ,
     Contacts,
