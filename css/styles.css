@@ -416,7 +416,7 @@ p {
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 40px;
     padding: 20px 0;
-    perspective: 1000px;
+    perspective: 1200px;
 }
 
 @media (max-width: 768px) {
@@ -436,7 +436,7 @@ p {
 .book-container {
     width: 100%;
     height: 350px;
-    perspective: 1000px;
+    perspective: 1200px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -447,25 +447,36 @@ p {
     width: 200px;
     height: 280px;
     transform-style: preserve-3d;
-    transition: transform 0.8s cubic-bezier(0.4, 0.0, 0.2, 1);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     cursor: pointer;
-    transform: rotateY(-15deg) rotateX(5deg);
+    transform: rotateY(-15deg) rotateX(5deg) scale(1);
 }
 
 .book:hover {
     transform: rotateY(-20deg) rotateX(10deg) scale(1.05);
 }
 
-.book-container.flipped .book {
-    transform: rotateY(-180deg) rotateX(5deg);
+/* Состояние 1: Первое открытие - показ кейса, книга становится меньше */
+.book-container.state-1 .book {
+    transform: rotateY(-45deg) rotateX(8deg) scale(0.85) translateZ(-20px);
 }
 
-.book-container.flipped .book:hover {
-    transform: rotateY(-185deg) rotateX(10deg) scale(1.05);
+.book-container.state-1 .book:hover {
+    transform: rotateY(-50deg) rotateX(12deg) scale(0.9) translateZ(-15px);
+}
+
+/* Состояние 2: Второе открытие - показ описания, та же дистанция */
+.book-container.state-2 .book {
+    transform: rotateY(-135deg) rotateX(8deg) scale(0.85) translateZ(-20px);
+}
+
+.book-container.state-2 .book:hover {
+    transform: rotateY(-140deg) rotateX(12deg) scale(0.9) translateZ(-15px);
 }
 
 .book-cover,
-.book-pages {
+.book-pages-1,
+.book-pages-2 {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -475,19 +486,71 @@ p {
     box-shadow: 
         10px 10px 20px rgba(0, 0, 0, 0.2),
         -2px 0 5px rgba(0, 0, 0, 0.1);
+    transition: all 0.6s ease;
 }
 
 .book-cover {
     background: linear-gradient(135deg, var(--light-pink), var(--primary-pink));
     border: 2px solid var(--primary-pink);
-    z-index: 2;
+    z-index: 3;
+    opacity: 1;
+    pointer-events: all;
 }
 
-.book-pages {
+.book-pages-1 {
     background: #f8f8f8;
     border: 1px solid #ddd;
+    transform: rotateY(90deg);
+    z-index: 2;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.book-pages-2 {
+    background: #f0f0f0;
+    border: 1px solid #ccc;
     transform: rotateY(180deg);
     z-index: 1;
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Показываем первые страницы (кейс) в состоянии 1 */
+.book-container.state-1 .book-cover {
+    opacity: 0;
+    pointer-events: none;
+    transform: rotateY(-90deg);
+}
+
+.book-container.state-1 .book-pages-1 {
+    opacity: 1;
+    pointer-events: all;
+    transform: rotateY(0deg);
+}
+
+.book-container.state-1 .book-pages-2 {
+    opacity: 0;
+    pointer-events: none;
+    transform: rotateY(90deg);
+}
+
+/* Показываем вторые страницы (описание) в состоянии 2 */
+.book-container.state-2 .book-cover {
+    opacity: 0;
+    pointer-events: none;
+    transform: rotateY(-90deg);
+}
+
+.book-container.state-2 .book-pages-1 {
+    opacity: 0;
+    pointer-events: none;
+    transform: rotateY(-90deg);
+}
+
+.book-container.state-2 .book-pages-2 {
+    opacity: 1;
+    pointer-events: all;
+    transform: rotateY(0deg);
 }
 
 .book-spine {
@@ -655,15 +718,49 @@ p {
     background: #f9f9f9;
 }
 
-/* Flip animation effects */
-.book-container:not(.flipped) .book-pages {
-    opacity: 0;
-    pointer-events: none;
+/* Enhanced 3D lighting effects with state-based shadows */
+.book:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -20px;
+    width: 20px;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        rgba(0,0,0,0.3) 0%, 
+        rgba(0,0,0,0.1) 50%, 
+        transparent 100%);
+    border-radius: 5px 0 0 5px;
+    z-index: -1;
+    transition: all 0.6s ease;
 }
 
-.book-container.flipped .book-cover {
-    opacity: 0;
-    pointer-events: none;
+/* Page interaction enhancement */
+.book-container {
+    transition: all 0.4s ease;
+}
+
+.book-container:active {
+    transform: scale(0.98);
+}
+
+/* Dynamic glow effects based on state */
+.book-container:hover .book {
+    box-shadow: 
+        0 0 30px rgba(255, 189, 200, 0.5),
+        10px 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.book-container.state-1:hover .book,
+.book-container.state-2:hover .book {
+    box-shadow: 
+        0 0 40px rgba(240, 11, 13, 0.4),
+        15px 15px 25px rgba(0, 0, 0, 0.25);
+}
+
+/* Smooth page transitions */
+.page {
+    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 /* Interaction hint animation */
@@ -723,38 +820,6 @@ p {
         font-size: 10px;
         padding: 8px;
     }
-}
-
-/* Enhanced lighting effects */
-.book:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -20px;
-    width: 20px;
-    height: 100%;
-    background: linear-gradient(90deg, 
-        rgba(0,0,0,0.3) 0%, 
-        rgba(0,0,0,0.1) 50%, 
-        transparent 100%);
-    border-radius: 5px 0 0 5px;
-    z-index: -1;
-}
-
-/* Page turn effect enhancement */
-.book-container {
-    transition: all 0.3s ease;
-}
-
-.book-container:active {
-    transform: scale(0.95);
-}
-
-/* Glow effect on hover */
-.book-container:hover .book {
-    box-shadow: 
-        0 0 30px rgba(255, 189, 200, 0.5),
-        10px 10px 20px rgba(0, 0, 0, 0.2);
 }
 
 /* ================================

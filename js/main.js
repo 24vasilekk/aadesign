@@ -238,7 +238,6 @@ const Books3D = {
         
         bookContainers.forEach(container => {
             const book = container.querySelector('.book');
-            let isFlipped = false;
             
             book.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -272,70 +271,120 @@ const Books3D = {
                 }
             });
             
-            // Store initial state
-            container.dataset.flipped = 'false';
+            // Initialize state
+            container.dataset.state = '0';
         });
     },
     
     flipBook(container) {
-        const isCurrentlyFlipped = container.dataset.flipped === 'true';
+        const currentState = parseInt(container.dataset.state || '0');
+        let nextState;
+        let actionName;
         
-        if (isCurrentlyFlipped) {
-            // Flip back to cover
-            container.classList.remove('flipped');
-            container.dataset.flipped = 'false';
-            
-            // Track analytics
-            Analytics.track('book_flip', {
-                book: container.dataset.book,
-                action: 'close'
-            });
-        } else {
-            // Flip to description pages
-            container.classList.add('flipped');
-            container.dataset.flipped = 'true';
-            
-            // Track analytics
-            Analytics.track('book_flip', {
-                book: container.dataset.book,
-                action: 'open'
+        // Определяем следующее состояние
+        switch(currentState) {
+            case 0: // Закрыто -> Показать кейс
+                nextState = 1;
+                actionName = 'open_case';
+                break;
+            case 1: // Кейс -> Показать описание
+                nextState = 2;
+                actionName = 'open_description';
+                break;
+            case 2: // Описание -> Закрыть
+                nextState = 0;
+                actionName = 'close';
+                break;
+            default:
+                nextState = 0;
+                actionName = 'reset';
+        }
+        
+        // Обновляем состояние
+        this.updateBookState(container, nextState);
+        
+        // Track analytics
+        Analytics.track('book_flip', {
+            book: container.dataset.book,
+            action: actionName,
+            state: nextState
+        });
+        
+        // Отправляем данные в Telegram если книга открылась в первый раз
+        if (nextState === 1) {
+            TelegramApp.sendData({
+                action: 'book_flip',
+                data: {
+                    book: container.dataset.book,
+                    action: 'open'
+                }
             });
         }
+    },
+    
+    updateBookState(container, state) {
+        // Удаляем все предыдущие состояния
+        container.classList.remove('state-0', 'state-1', 'state-2');
+        
+        // Добавляем новое состояние
+        container.classList.add(`state-${state}`);
+        container.dataset.state = state.toString();
+        
+        // Добавляем визуальный эффект при переходе
+        const book = container.querySelector('.book');
+        book.style.transform += ' scale(0.95)';
+        
+        setTimeout(() => {
+            book.style.transform = book.style.transform.replace(' scale(0.95)', '');
+        }, 150);
     },
     
     // Auto-close books when switching sections
     closeAllBooks() {
         const bookContainers = document.querySelectorAll('.book-container');
         bookContainers.forEach(container => {
-            container.classList.remove('flipped');
-            container.dataset.flipped = 'false';
+            this.updateBookState(container, 0);
         });
     },
     
-    // Demo mode - automatically flip through books
+    // Get current state of all books
+    getBooksState() {
+        const bookContainers = document.querySelectorAll('.book-container');
+        const states = {};
+        
+        bookContainers.forEach(container => {
+            const bookId = container.dataset.book;
+            const state = parseInt(container.dataset.state || '0');
+            states[bookId] = state;
+        });
+        
+        return states;
+    },
+    
+    // Demo mode - automatically cycle through states
     startDemo() {
         const bookContainers = document.querySelectorAll('.book-container');
         let currentIndex = 0;
+        let currentState = 0;
         
         const flipNext = () => {
-            // Close all books first
-            this.closeAllBooks();
-            
-            // Flip current book
-            setTimeout(() => {
-                if (bookContainers[currentIndex]) {
-                    this.flipBook(bookContainers[currentIndex]);
+            if (bookContainers[currentIndex]) {
+                const container = bookContainers[currentIndex];
+                this.flipBook(container);
+                
+                currentState++;
+                if (currentState > 2) {
+                    currentState = 0;
+                    currentIndex = (currentIndex + 1) % bookContainers.length;
                 }
-                
-                currentIndex = (currentIndex + 1) % bookContainers.length;
-                
-                // Schedule next flip
-                setTimeout(flipNext, 3000);
-            }, 500);
+            }
+            
+            // Schedule next flip
+            setTimeout(flipNext, 2000);
         };
         
         // Start demo after a delay
-        setTimeout(flipNext, 2000);
+        setTimeout(flipNext, 1000);
     }
 };
 
