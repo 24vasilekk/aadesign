@@ -419,12 +419,14 @@ p {
     perspective: 1500px;
     max-width: 1200px;
     margin: 0 auto;
+    justify-items: center;
 }
 
 @media (max-width: 768px) {
     .books-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 30px;
+        justify-items: center;
     }
     
     .content {
@@ -436,6 +438,7 @@ p {
     .books-grid {
         grid-template-columns: 1fr;
         gap: 40px;
+        justify-items: center;
     }
 }
 
