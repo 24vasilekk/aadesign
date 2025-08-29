@@ -204,6 +204,7 @@ p {
     min-height: calc(100vh - 300px);
     max-width: 600px;
     margin: 0 auto;
+    text-align: center;
 }
 
 .section {
@@ -412,43 +413,50 @@ p {
    3D Books Section - IMPROVED
    ================================ */
 .books-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
     gap: 60px;
-    padding: 20px 0;
+    padding: 20px;
     perspective: 1500px;
     max-width: 1200px;
     margin: 0 auto;
-    justify-items: center;
+    justify-content: center;
+    align-items: center;
 }
 
 @media (max-width: 768px) {
     .books-grid {
-        grid-template-columns: repeat(2, 1fr);
         gap: 30px;
-        justify-items: center;
+        padding: 20px 10px;
+        justify-content: center;
     }
     
     .content {
         max-width: 100%;
+        padding: 20px 10px;
     }
 }
 
 @media (max-width: 480px) {
     .books-grid {
-        grid-template-columns: 1fr;
         gap: 40px;
-        justify-items: center;
+        padding: 20px 15px;
+        justify-content: center;
+    }
+    
+    .content {
+        padding: 20px 10px;
     }
 }
 
 .book-container {
-    width: 100%;
+    width: 280px;
     height: 400px;
     perspective: 1500px;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 0 auto;
 }
 
 .book {
@@ -459,6 +467,7 @@ p {
     transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     cursor: pointer;
     transform: rotateY(-15deg) rotateX(5deg) scale(1);
+    margin: 0 auto;
 }
 
 .book:hover {
@@ -491,6 +500,9 @@ p {
     opacity: 0;
     pointer-events: none;
     transition: all 0.8s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .book-spread.active {
@@ -506,6 +518,9 @@ p {
     overflow: hidden;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
     background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .page-left {
@@ -539,11 +554,12 @@ p {
 
 /* Состояние 1: Первое раскрытие - кейсы */
 .book-container.state-1 .book {
-    transform: rotateY(0deg) rotateX(0deg) scale(0.9);
+    transform: rotateY(0deg) rotateX(0deg) scale(0.85);
+    margin: 0 auto;
 }
 
 .book-container.state-1 .book:hover {
-    transform: rotateY(0deg) rotateX(5deg) scale(0.95);
+    transform: rotateY(0deg) rotateX(5deg) scale(0.9);
 }
 
 .book-container.state-1 .book-cover {
@@ -566,11 +582,12 @@ p {
 
 /* Состояние 2: Второе раскрытие - описание */
 .book-container.state-2 .book {
-    transform: rotateY(0deg) rotateX(0deg) scale(0.9);
+    transform: rotateY(0deg) rotateX(0deg) scale(0.85);
+    margin: 0 auto;
 }
 
 .book-container.state-2 .book:hover {
-    transform: rotateY(0deg) rotateX(5deg) scale(0.95);
+    transform: rotateY(0deg) rotateX(5deg) scale(0.9);
 }
 
 .book-container.state-2 .book-cover {
@@ -776,12 +793,21 @@ p {
 /* Мобильные оптимизации */
 @media (max-width: 480px) {
     .book-container {
+        width: 240px;
         height: 350px;
+        margin: 0 auto;
     }
     
     .book {
         width: 200px;
         height: 280px;
+        margin: 0 auto;
+    }
+    
+    .book-container.state-1 .book,
+    .book-container.state-2 .book {
+        transform: rotateY(0deg) rotateX(0deg) scale(0.8);
+        margin: 0 auto;
     }
     
     .page-title {
