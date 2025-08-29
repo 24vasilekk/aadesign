@@ -226,7 +226,7 @@ const Navigation = {
 };
 
 // ================================
-// 3D Books Functionality
+// 3D Books Functionality - IMPROVED
 // ================================
 const Books3D = {
     init() {
@@ -283,11 +283,11 @@ const Books3D = {
         
         // Определяем следующее состояние
         switch(currentState) {
-            case 0: // Закрыто -> Показать кейс
+            case 0: // Закрыто -> Показать кейсы (раскрыть книгу)
                 nextState = 1;
-                actionName = 'open_case';
+                actionName = 'open_cases';
                 break;
-            case 1: // Кейс -> Показать описание
+            case 1: // Кейсы -> Показать описание (перелистнуть)
                 nextState = 2;
                 actionName = 'open_description';
                 break;
@@ -332,11 +332,31 @@ const Books3D = {
         
         // Добавляем визуальный эффект при переходе
         const book = container.querySelector('.book');
-        book.style.transform += ' scale(0.95)';
+        const originalTransform = book.style.transform;
+        
+        // Добавляем легкий эффект нажатия
+        book.style.transform = (originalTransform || '') + ' scale(0.95)';
         
         setTimeout(() => {
-            book.style.transform = book.style.transform.replace(' scale(0.95)', '');
+            book.style.transform = originalTransform || '';
         }, 150);
+        
+        // Обновляем состояние spread-ов для новой структуры
+        const spread1 = container.querySelector('.book-spread-1');
+        const spread2 = container.querySelector('.book-spread-2');
+        
+        if (spread1 && spread2) {
+            // Убираем активные классы
+            spread1.classList.remove('active');
+            spread2.classList.remove('active');
+            
+            // Добавляем нужный активный класс в зависимости от состояния
+            if (state === 1) {
+                spread1.classList.add('active');
+            } else if (state === 2) {
+                spread2.classList.add('active');
+            }
+        }
     },
     
     // Auto-close books when switching sections
@@ -361,6 +381,22 @@ const Books3D = {
         return states;
     },
     
+    // Set specific book state
+    setBookState(bookId, state) {
+        const container = document.querySelector(`.book-container[data-book="${bookId}"]`);
+        if (container) {
+            this.updateBookState(container, state);
+        }
+    },
+    
+    // Open all books to show cases
+    showAllCases() {
+        const bookContainers = document.querySelectorAll('.book-container');
+        bookContainers.forEach(container => {
+            this.updateBookState(container, 1);
+        });
+    },
+    
     // Demo mode - automatically cycle through states
     startDemo() {
         const bookContainers = document.querySelectorAll('.book-container');
@@ -380,11 +416,28 @@ const Books3D = {
             }
             
             // Schedule next flip
-            setTimeout(flipNext, 2000);
+            setTimeout(flipNext, 3000);
         };
         
         // Start demo after a delay
         setTimeout(flipNext, 1000);
+    },
+    
+    // Get book info for analytics
+    getBookInfo(bookId) {
+        const container = document.querySelector(`.book-container[data-book="${bookId}"]`);
+        if (container) {
+            const title = container.querySelector('.book-cover .page-content div:nth-child(2)')?.textContent || `Book ${bookId}`;
+            const state = parseInt(container.dataset.state || '0');
+            
+            return {
+                id: bookId,
+                title: title,
+                state: state,
+                stateNames: ['closed', 'cases', 'description']
+            };
+        }
+        return null;
     }
 };
 
@@ -753,7 +806,7 @@ const Animations = {
         }, observerOptions);
         
         // Add fade-in class to elements
-        document.querySelectorAll('.service-card, .case-card').forEach(el => {
+        document.querySelectorAll('.service-card, .book-container').forEach(el => {
             el.classList.add('fade-in');
             observer.observe(el);
         });
@@ -899,6 +952,7 @@ const App = {
         this.checkConnection();
         
         console.log('✅ A&A Design Web App Ready!');
+        console.log('📖 New 3D Books: Interactive spread-style opening');
     },
     
     setupErrorHandler() {

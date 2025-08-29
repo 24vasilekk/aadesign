@@ -134,61 +134,73 @@
             </div>
         </section>
 
-        <!-- Cases Section -->
+        <!-- Cases Section - UPDATED WITH NEW 3D BOOKS -->
         <section id="cases" class="section">
             <h2 style="margin-bottom: 30px; text-align: center;">Наши работы</h2>
-            <p style="text-align: center; margin-bottom: 30px; opacity: 0.8; font-size: 14px;">Нажмите на книгу, чтобы перелистнуть страницы 📖</p>
+            <p style="text-align: center; margin-bottom: 30px; opacity: 0.8; font-size: 14px;">Нажмите на книгу, чтобы раскрыть её и посмотреть примеры работ 📖</p>
             
             <div class="books-grid">
                 <!-- Книга 1: Журнал для мамы -->
-                <div class="book-container" data-book="1">
+                <div class="book-container" data-book="1" data-state="0">
                     <div class="book">
+                        <!-- Корешок -->
+                        <div class="book-spine"></div>
+                        
                         <!-- Обложка -->
                         <div class="book-cover">
-                            <div class="book-spine"></div>
-                            <div class="page page-1">
-                                <img src="assets/images/cases/mom-journal-cover.png" alt="Журнал для мамы - обложка" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjI4MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRkZFM0U3Ii8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSI0OCIgZmlsbD0iI0YwMEIwRCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPvCfk7g8L3RleHQ+PC9zdmc+'">
-                                <div class="page-title">Журнал для мамы</div>
-                            </div>
-                        </div>
-                        
-                        <!-- Первые страницы - Кейс -->
-                        <div class="book-pages-1">
-                            <div class="page page-1">
-                                <img src="assets/images/cases/mom-journal-1.png" alt="Журнал для мамы - кейс 1" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjI4MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRkZCREM4Ii8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSI0OCIgZmlsbD0iI0YwMEIwRCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPu+4j/CfkZo8L3RleHQ+PC9zdmc+'">
-                                <div class="page-content">
-                                    <h4>Страница 1</h4>
-                                    <p>Семейные фото и теплые воспоминания о маме.</p>
-                                </div>
-                            </div>
-                            <div class="page page-2">
-                                <img src="assets/images/cases/mom-journal-2.png" alt="Журнал для мамы - кейс 2" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjI4MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRkZCREM4Ii8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSI0OCIgZmlsbD0iI0YwMEIwRCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPu+4j/CfkZo8L3RleHQ+PC9zdmc+'">
-                                <div class="page-content">
-                                    <h4>Страница 2</h4>
-                                    <p>Рукописные письма и личные истории.</p>
+                            <div class="page-content" style="background: linear-gradient(135deg, var(--light-pink), var(--primary-pink)); border-radius: 5px 15px 15px 5px;">
+                                <div style="text-align: center; color: var(--black);">
+                                    <div style="font-size: 48px; margin-bottom: 20px;">📖</div>
+                                    <div style="font-size: 18px; font-weight: bold;">Журнал для мамы</div>
+                                    <div style="font-size: 12px; opacity: 0.8; margin-top: 10px;">Нажмите, чтобы раскрыть</div>
                                 </div>
                             </div>
                         </div>
                         
-                        <!-- Вторые страницы - Описание -->
-                        <div class="book-pages-2">
-                            <div class="page page-3">
-                                <img src="assets/images/cases/mom-journal-desc-1.png" alt="Описание проекта 1" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjI4MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZmZmZmZmIi8+PHRleHQgeD0iNTAlIiB5PSIzMCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNiIgZmlsbD0iIzMzMzMzMyIgdGV4dC1hbmNob3I9Im1pZGRsZSI+0J7Qv9C40YHQsNC90LjQtTwvdGV4dD48dGV4dCB4PSI1JSIgeT0iNDUlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTIiIGZpbGw9IiM2NjY2NjYiPirE0LDQutGC0LXRgCDQv9GA0L7QtdC60YLQsDwvdGV4dD48dGV4dCB4PSI1JSIgeT0iNTUlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTIiIGZpbGw9IiM2NjY2NjYiPivg0JTQttC10YPRhiDQutCw0LLQqSBpbnNwZXI8L3RleHQ+PC9zdmc+'">
-                                <div class="description-content">
-                                    <h4>Описание проекта</h4>
-                                    <ul>
-                                        <li><strong>Тираж:</strong> Размер M</li>
-                                        <li><strong>Страницы:</strong> 16 страниц</li>
-                                        <li><strong>Особенности:</strong> Семейные фото, рукописные письма</li>
-                                    </ul>
+                        <!-- Первый разворот - Кейсы -->
+                        <div class="book-spread book-spread-1">
+                            <div class="page-left">
+                                <div class="page-content">
+                                    <img src="assets/images/cases/mom-journal-1.png" alt="Журнал для мамы - кейс 1" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, var(--light-pink), var(--primary-pink))'; this.parentElement.innerHTML += '<div style=\'font-size: 36px; display: flex; align-items: center; justify-content: center; height: 100%;\'>👩‍👧</div>';">
+                                    <div class="page-info">
+                                        <h4>Кейс 1</h4>
+                                        <p>Семейные фото и теплые воспоминания о маме</p>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="page page-4">
-                                <img src="assets/images/cases/mom-journal-desc-2.png" alt="Описание проекта 2" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjI4MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjlmOWY5Ii8+PHRleHQgeD0iNTAlIiB5PSIzMCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iI0YwMEIwRCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+0J7RgtC30YvQsiDQutC70LjQtdC90YLQsDwvdGV4dD48dGV4dCB4PSI1JSIgeT0iNDUlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTEiIGZpbGw9IiM2NjY2NjYiPijg0JDQvdC90LA6ICLQndC1INC+0LbQuNC00LDQu9CwIjwvdGV4dD48dGV4dCB4PSI1JSIgeT0iNTUlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTEiIGZpbGw9IiM2NjY2NjYiPijjlIzvmIAgUXVhbGl0YXRpdmUgSW1hZ2VzITwvdGV4dD48L3N2Zz4=">
-                                <div class="description-content">
-                                    <h4>Отзыв клиента</h4>
-                                    <blockquote>"Мама плакала от счастья! Это лучший подарок, который я когда-либо дарила."</blockquote>
-                                    <cite>— Анна, Москва</cite>
+                            <div class="page-right">
+                                <div class="page-content">
+                                    <img src="assets/images/cases/mom-journal-2.png" alt="Журнал для мамы - кейс 2" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, var(--primary-pink), var(--light-pink))'; this.parentElement.innerHTML += '<div style=\'font-size: 36px; display: flex; align-items: center; justify-content: center; height: 100%;\'>💝</div>';">
+                                    <div class="page-info">
+                                        <h4>Кейс 2</h4>
+                                        <p>Рукописные письма и личные истории</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Второй разворот - Описание -->
+                        <div class="book-spread book-spread-2">
+                            <div class="page-left">
+                                <div class="page-content">
+                                    <div class="description-content">
+                                        <h4>Описание проекта</h4>
+                                        <ul>
+                                            <li><strong>Тираж:</strong> Размер M</li>
+                                            <li><strong>Страницы:</strong> 16 страниц</li>
+                                            <li><strong>Особенности:</strong> Семейные фото, рукописные письма</li>
+                                            <li><strong>Время:</strong> 5-8 дней</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="page-right">
+                                <div class="page-content">
+                                    <div class="description-content">
+                                        <h4>Отзыв клиента</h4>
+                                        <blockquote>"Мама плакала от счастья! Это лучший подарок, который я когда-либо дарила. Качество печати превзошло все ожидания!"</blockquote>
+                                        <cite>— Анна, Москва</cite>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -196,40 +208,62 @@
                 </div>
 
                 <!-- Книга 2: Love Story -->
-                <div class="book-container" data-book="2">
+                <div class="book-container" data-book="2" data-state="0">
                     <div class="book">
+                        <div class="book-spine"></div>
+                        
                         <div class="book-cover">
-                            <div class="book-spine"></div>
-                            <div class="page page-1">
-                                <img src="assets/images/cases/love-story-1.png" alt="Love Story - страница 1" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjI4MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRkZFM0U3Ii8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSI0OCIgZmlsbD0iI0YwMEIwRCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPu+4j/CfkY08L3RleHQ+PC9zdmc+'" >
-                                <div class="page-title">Love Story</div>
-                            </div>
-                            <div class="page page-2">
-                                <img src="assets/images/cases/love-story-2.png" alt="Love Story - страница 2" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjI4MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRkZCREM4Ii8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSI0OCIgZmlsbD0iI0YwMEIwRCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPu+4j/CfkJI8L3RleHQ+PC9zdmc+'" >
-                                <div class="page-content">
-                                    <h4>Романтическая история</h4>
-                                    <p>История знакомства, первые свидания, путешествия вдвоем.</p>
+                            <div class="page-content" style="background: linear-gradient(135deg, #FFE3E7, #FF69B4); border-radius: 5px 15px 15px 5px;">
+                                <div style="text-align: center; color: white;">
+                                    <div style="font-size: 48px; margin-bottom: 20px;">💕</div>
+                                    <div style="font-size: 18px; font-weight: bold;">Love Story</div>
+                                    <div style="font-size: 12px; opacity: 0.9; margin-top: 10px;">Романтическая история</div>
                                 </div>
                             </div>
                         </div>
-                        <div class="book-pages">
-                            <div class="page page-3">
-                                <img src="assets/images/cases/love-story-desc-1.png" alt="Love Story описание 1" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjI4MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZmZmZmZmIi8+PHRleHQgeD0iNTAlIiB5PSIzMCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNiIgZmlsbD0iIzMzMzMzMyIgdGV4dC1hbmNob3I9Im1pZGRsZSI+0J7Qv9C40YHQsNC90LjQtTwvdGV4dD48dGV4dCB4PSI1JSIgeT0iNDUlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTIiIGZpbGw9IiM2NjY2NjYiPirE0LDQutGC0LXRgCDQv9GA0L7QtdC60YLQsDwvdGV4dD48dGV4dCB4PSI1JSIgeT0iNTUlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTIiIGZpbGw9IiM2NjY2NjYiPirE0KDQvtC80LDQudGC0LjRh9C10YHQutCw0Y8g0LjRgdGC0L7RgNC40Y88L3RleHQ+PC9zdmc+'" >
-                                <div class="description-content">
-                                    <h4>Детали проекта</h4>
-                                    <ul>
-                                        <li><strong>Тираж:</strong> Размер L</li>
-                                        <li><strong>Страницы:</strong> 20 страниц</li>
-                                        <li><strong>Особенности:</strong> Фото с путешествий, билеты</li>
-                                    </ul>
+                        
+                        <div class="book-spread book-spread-1">
+                            <div class="page-left">
+                                <div class="page-content">
+                                    <img src="assets/images/cases/love-story-1.png" alt="Love Story - кейс 1" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #FFE3E7, #FF69B4)'; this.parentElement.innerHTML += '<div style=\'font-size: 36px; display: flex; align-items: center; justify-content: center; height: 100%;\'>🌹</div>';">
+                                    <div class="page-info">
+                                        <h4>История знакомства</h4>
+                                        <p>Первые свидания и романтические моменты</p>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="page page-4">
-                                <img src="assets/images/cases/love-story-desc-2.png" alt="Love Story описание 2" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjI4MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjlmOWY5Ii8+PHRleHQgeD0iNTAlIiB5PSIzMCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iI0YwMEIwRCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+0J7RgtC30YvQsiDQutC70LjQtdC90YLQsDwvdGV4dD48dGV4dCB4PSI1JSIgeT0iNDUlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTEiIGZpbGw9IiM2NjY2NjYiPirE0JzQsNC60YHQuNC8OiAi0KLQsNC60L7QuSDRgdC+0LDQvdGC0LjRh9C90YvQuSI8L3RleHQ+PHRleHQgeD0iNSUiIHk9IjU1JSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjExIiBmaWxsPSIjNjY2NjY2Ij7jlIzvmIkg0L/QtdGH0LDRgtGMISDDvy7ggLnQqNCh0YPQtDE8L3RleHQ+PC9zdmc+'" >
-                                <div class="description-content">
-                                    <h4>Отзыв клиента</h4>
-                                    <blockquote>"Девушка была в восторге! Теперь заказываю всем друзьям."</blockquote>
-                                    <cite>— Максим, СПб</cite>
+                            <div class="page-right">
+                                <div class="page-content">
+                                    <img src="assets/images/cases/love-story-2.png" alt="Love Story - кейс 2" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #FF69B4, #FFE3E7)'; this.parentElement.innerHTML += '<div style=\'font-size: 36px; display: flex; align-items: center; justify-content: center; height: 100%;\'>✈️</div>';">
+                                    <div class="page-info">
+                                        <h4>Путешествия вместе</h4>
+                                        <p>Совместные приключения и воспоминания</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="book-spread book-spread-2">
+                            <div class="page-left">
+                                <div class="page-content">
+                                    <div class="description-content">
+                                        <h4>Детали проекта</h4>
+                                        <ul>
+                                            <li><strong>Тираж:</strong> Размер L</li>
+                                            <li><strong>Страницы:</strong> 20 страниц</li>
+                                            <li><strong>Особенности:</strong> Фото с путешествий, билеты, открытки</li>
+                                            <li><strong>Время:</strong> 7-10 дней</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="page-right">
+                                <div class="page-content">
+                                    <div class="description-content">
+                                        <h4>Отзыв клиента</h4>
+                                        <blockquote>"Девушка была в восторге! Теперь заказываю всем друзьям. Такой романтичный и трогательный подарок получился!"</blockquote>
+                                        <cite>— Максим, СПб</cite>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -237,40 +271,62 @@
                 </div>
 
                 <!-- Книга 3: Лучшей подруге -->
-                <div class="book-container" data-book="3">
+                <div class="book-container" data-book="3" data-state="0">
                     <div class="book">
+                        <div class="book-spine"></div>
+                        
                         <div class="book-cover">
-                            <div class="book-spine"></div>
-                            <div class="page page-1">
-                                <img src="assets/images/cases/friend-journal-1.png" alt="Журнал подруге - страница 1" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjI4MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRkZFM0U3Ii8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSI0OCIgZmlsbD0iI0YwMEIwRCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPu+4j/CfkKc8L3RleHQ+PC9zdmc+'" >
-                                <div class="page-title">Лучшей подруге</div>
-                            </div>
-                            <div class="page page-2">
-                                <img src="assets/images/cases/friend-journal-2.png" alt="Журнал подруге - страница 2" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjI4MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRkZCREM4Ii8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSI0OCIgZmlsbD0iI0YwMEIwRCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPu+4j/CfkL48L3RleHQ+PC9zdmc+'" >
-                                <div class="page-content">
-                                    <h4>Книга дружбы</h4>
-                                    <p>Веселые фото, шутки и воспоминания о приключениях.</p>
+                            <div class="page-content" style="background: linear-gradient(135deg, #FFE3E7, #FFB6C1); border-radius: 5px 15px 15px 5px;">
+                                <div style="text-align: center; color: var(--black);">
+                                    <div style="font-size: 48px; margin-bottom: 20px;">👯‍♀️</div>
+                                    <div style="font-size: 18px; font-weight: bold;">Лучшей подруге</div>
+                                    <div style="font-size: 12px; opacity: 0.8; margin-top: 10px;">Книга дружбы</div>
                                 </div>
                             </div>
                         </div>
-                        <div class="book-pages">
-                            <div class="page page-3">
-                                <img src="assets/images/cases/friend-journal-desc-1.png" alt="Журнал подруге описание 1" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjI4MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZmZmZmZmIi8+PHRleHQgeD0iNTAlIiB5PSIzMCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNiIgZmlsbD0iIzMzMzMzMyIgdGV4dC1hbmNob3I9Im1pZGRsZSI+0J7Qv9C40YHQsNC90LjQtTwvdGV4dD48dGV4dCB4PSI1JSIgeT0iNDUlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTIiIGZpbGw9IiM2NjY2NjYiPirE0KXQsNGA0LDQutGC0LXRgCDQv9GA0L7QtdC60YLQsDwvdGV4dD48dGV4dCB4PSI1JSIgeT0iNTUlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTIiIGZpbGw9IiM2NjY2NjYiPivg0JTRgNGD0LbQtdGB0LrQuNC5INC20YPRgNC90LDQuw=='" >
-                                <div class="description-content">
-                                    <h4>Характеристики</h4>
-                                    <ul>
-                                        <li><strong>Тираж:</strong> Размер M</li>
-                                        <li><strong>Страницы:</strong> 16 страниц</li>
-                                        <li><strong>Особенности:</strong> Яркие фото, мемы, шутки</li>
-                                    </ul>
+                        
+                        <div class="book-spread book-spread-1">
+                            <div class="page-left">
+                                <div class="page-content">
+                                    <img src="assets/images/cases/friend-journal-1.png" alt="Журнал подруге - кейс 1" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #FFE3E7, #FFB6C1)'; this.parentElement.innerHTML += '<div style=\'font-size: 36px; display: flex; align-items: center; justify-content: center; height: 100%;\'>🎉</div>';">
+                                    <div class="page-info">
+                                        <h4>Веселые моменты</h4>
+                                        <p>Яркие фото и смешные истории</p>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="page page-4">
-                                <img src="assets/images/cases/friend-journal-desc-2.png" alt="Журнал подруге описание 2" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjI4MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjlmOWY5Ii8+PHRleHQgeD0iNTAlIiB5PSIzMCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iI0YwMEIwRCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+0J7RgtC30YvQsiDQutC70LjQtdC90YLQsDwvdGV4dD48dGV4dCB4PSI1JSIgeT0iNDUlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTEiIGZpbGw9IiM2NjY2NjYiPirE0JXQu9C10L3QsDog0LrQsNC60LDRjyDQutGA0YPRgtCw0Y8g0LjQtNC10Y/DvyE8L3RleHQ+PHRleHQgeD0iNSUiIHk9IjU1JSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjExIiBmaWxsPSIjNjY2NjY2Ij7jlIzRjCDQvdCwINC50YHQv9C+0LvQvdC10L3QuNGOINGC0LDQui48L3RleHQ+PC9zdmc+'" >
-                                <div class="description-content">
-                                    <h4>Отзыв клиента</h4>
-                                    <blockquote>"Подруга смеялась и плакала одновременно! Лучший подарок!"</blockquote>
-                                    <cite>— Елена, Казань</cite>
+                            <div class="page-right">
+                                <div class="page-content">
+                                    <img src="assets/images/cases/friend-journal-2.png" alt="Журнал подруге - кейс 2" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #FFB6C1, #FFE3E7)'; this.parentElement.innerHTML += '<div style=\'font-size: 36px; display: flex; align-items: center; justify-content: center; height: 100%;\'>🤳</div>';">
+                                    <div class="page-info">
+                                        <h4>Селфи и мемы</h4>
+                                        <p>Внутренние шутки и воспоминания</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="book-spread book-spread-2">
+                            <div class="page-left">
+                                <div class="page-content">
+                                    <div class="description-content">
+                                        <h4>Характеристики</h4>
+                                        <ul>
+                                            <li><strong>Тираж:</strong> Размер M</li>
+                                            <li><strong>Страницы:</strong> 16 страниц</li>
+                                            <li><strong>Особенности:</strong> Яркие фото, мемы, шутки</li>
+                                            <li><strong>Время:</strong> 5-8 дней</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="page-right">
+                                <div class="page-content">
+                                    <div class="description-content">
+                                        <h4>Отзыв клиента</h4>
+                                        <blockquote>"Подруга смеялась и плакала одновременно! Лучший подарок! Столько воспоминаний в одной книге."</blockquote>
+                                        <cite>— Елена, Казань</cite>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -278,40 +334,62 @@
                 </div>
 
                 <!-- Книга 4: Семейная история -->
-                <div class="book-container" data-book="4">
+                <div class="book-container" data-book="4" data-state="0">
                     <div class="book">
+                        <div class="book-spine"></div>
+                        
                         <div class="book-cover">
-                            <div class="book-spine"></div>
-                            <div class="page page-1">
-                                <img src="assets/images/cases/family-journal-1.png" alt="Семейная история - страница 1" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjI4MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRkZFM0U3Ii8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSI0OCIgZmlsbD0iI0YwMEIwRCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPu+4j/CfkYo8L3RleHQ+PC9zdmc+'" >
-                                <div class="page-title">Семейная история</div>
-                            </div>
-                            <div class="page page-2">
-                                <img src="assets/images/cases/family-journal-2.png" alt="Семейная история - страница 2" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjI4MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRkZCREM4Ii8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSI0OCIgZmlsbD0iI0YwMEIwRCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPu+4j/CfkY08L3RleHQ+PC9zdmc+'" >
-                                <div class="page-content">
-                                    <h4>Поколения в одной книге</h4>
-                                    <p>Старые фотографии, генеалогическое древо, семейные традиции.</p>
+                            <div class="page-content" style="background: linear-gradient(135deg, #FFE3E7, #DDBEA9); border-radius: 5px 15px 15px 5px;">
+                                <div style="text-align: center; color: var(--black);">
+                                    <div style="font-size: 48px; margin-bottom: 20px;">👨‍👩‍👧‍👦</div>
+                                    <div style="font-size: 18px; font-weight: bold;">Семейная история</div>
+                                    <div style="font-size: 12px; opacity: 0.8; margin-top: 10px;">Поколения в одной книге</div>
                                 </div>
                             </div>
                         </div>
-                        <div class="book-pages">
-                            <div class="page page-3">
-                                <img src="assets/images/cases/family-journal-desc-1.png" alt="Семейная история описание 1" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjI4MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZmZmZmZmIi8+PHRleHQgeD0iNTAlIiB5PSIzMCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNiIgZmlsbD0iIzMzMzMzMyIgdGV4dC1hbmNob3I9Im1pZGRsZSI+0J7Qv9C40YHQsNC90LjQtTwvdGV4dD48dGV4dCB4PSI1JSIgeT0iNDUlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTIiIGZpbGw9IiM2NjY2NjYiPirE0YXQsNGA0LDQutGC0LXRgCDQv9GA0L7QtdC60YLQsDwvdGV4dD48dGV4dCB4PSI1JSIgeT0iNTUlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTIiIGZpbGw9IiM2NjY2NjYiPirQodC10LzQtdC50L3QsNGPINC30LXQvdC90LjRjdCwPC90ZXh0Pjwvc3ZnPg=='" >
-                                <div class="description-content">
-                                    <h4>Описание работы</h4>
-                                    <ul>
-                                        <li><strong>Тираж:</strong> Размер XL</li>
-                                        <li><strong>Страницы:</strong> 30 страниц</li>
-                                        <li><strong>Особенности:</strong> Архивные фото, родословная</li>
-                                    </ul>
+                        
+                        <div class="book-spread book-spread-1">
+                            <div class="page-left">
+                                <div class="page-content">
+                                    <img src="assets/images/cases/family-journal-1.png" alt="Семейная история - кейс 1" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #FFE3E7, #DDBEA9)'; this.parentElement.innerHTML += '<div style=\'font-size: 36px; display: flex; align-items: center; justify-content: center; height: 100%;\'>🏡</div>';">
+                                    <div class="page-info">
+                                        <h4>Семейные традиции</h4>
+                                        <p>Старые фотографии и семейные истории</p>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="page page-4">
-                                <img src="assets/images/cases/family-journal-desc-2.png" alt="Семейная история описание 2" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjI4MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjlmOWY5Ii8+PHRleHQgeD0iNTAlIiB5PSIzMCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iI0YwMEIwRCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+0J7RgtC30YvQsiDQutC70LjQtdC90YLQsDwvdGV4dD48dGV4dCB4PSI1JSIgeT0iNDUlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTEiIGZpbGw9IiM2NjY2NjYiPirE0KHQtdC80YzRjzog0L3QsNGI0LAg0LjRgdGC0L7RgNC40Y8g0YHQvtGF0YDRjdGC0LDRgNGA0YzRgtC+0YHRjNCwPDwvdGV4dD48dGV4dCB4PSI1JSIgeT0iNTUlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTEiIGZpbGw9IiM2NjY2NjYiPijjlIzRjCDQv9C+0LTQsNGA0L7QuiDQvtGDQu3QuCDQvtGBQu3QulHQu9C60YPQvdC60LDQvDwvdGV4dD48L3N2Zz4='" >
-                                <div class="description-content">
-                                    <h4>Отзыв клиента</h4>
-                                    <blockquote>"Вся семья была в восторге! Теперь храним как семейную реликвию."</blockquote>
-                                    <cite>— Семья Петровых</cite>
+                            <div class="page-right">
+                                <div class="page-content">
+                                    <img src="assets/images/cases/family-journal-2.png" alt="Семейная история - кейс 2" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #DDBEA9, #FFE3E7)'; this.parentElement.innerHTML += '<div style=\'font-size: 36px; display: flex; align-items: center; justify-content: center; height: 100%;\'>🌳</div>';">
+                                    <div class="page-info">
+                                        <h4>Генеалогическое древо</h4>
+                                        <p>История рода и семейные ценности</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="book-spread book-spread-2">
+                            <div class="page-left">
+                                <div class="page-content">
+                                    <div class="description-content">
+                                        <h4>Описание работы</h4>
+                                        <ul>
+                                            <li><strong>Тираж:</strong> Размер XL</li>
+                                            <li><strong>Страницы:</strong> 30 страниц</li>
+                                            <li><strong>Особенности:</strong> Архивные фото, родословная</li>
+                                            <li><strong>Время:</strong> 10-14 дней</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="page-right">
+                                <div class="page-content">
+                                    <div class="description-content">
+                                        <h4>Отзыв клиента</h4>
+                                        <blockquote>"Вся семья была в восторге! Теперь храним как семейную реликвию. Дети с удовольствием изучают историю рода."</blockquote>
+                                        <cite>— Семья Петровых</cite>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -320,8 +398,8 @@
             </div>
 
             <div class="interaction-hint">
-                <p style="text-align: center; margin-top: 30px; color: var(--accent-red); font-size: 12px; animation: pulse 2s infinite;">
-                    💡 Нажмите на книгу: 1 клик - кейс, 2 клик - описание, 3 клик - закрыть
+                <p style="text-align: center; margin-top: 30px; color: var(--accent-red); font-size: 12px;">
+                    💡 <strong>Инструкция:</strong> 1 клик - раскрыть книгу (кейс) • 2 клик - перелистнуть (описание) • 3 клик - закрыть книгу
                 </p>
             </div>
         </section>
