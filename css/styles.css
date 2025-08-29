@@ -540,16 +540,41 @@ p {
 /* Состояния книги */
 
 /* Состояние 0: Закрыто */
+.book-container.state-0 .book {
+    transform: rotateY(-15deg) rotateX(5deg) scale(1);
+    margin: 0 auto;
+}
+
+.book-container.state-0 .book:hover {
+    transform: rotateY(-20deg) rotateX(10deg) scale(1.02);
+}
+
 .book-container.state-0 .book-cover {
     transform: rotateY(0deg);
     opacity: 1;
     pointer-events: all;
+    z-index: 10;
 }
 
 .book-container.state-0 .book-spread {
-    opacity: 0;
-    pointer-events: none;
-    transform: rotateY(-90deg) scale(0.8);
+    opacity: 0 !important;
+    pointer-events: none !important;
+    transform: rotateY(-180deg) scale(0.5) !important;
+    visibility: hidden;
+}
+
+.book-container.state-0 .book-spread-1 {
+    opacity: 0 !important;
+    pointer-events: none !important;
+    transform: rotateY(-180deg) scale(0.5) translateZ(-100px) !important;
+    visibility: hidden;
+}
+
+.book-container.state-0 .book-spread-2 {
+    opacity: 0 !important;
+    pointer-events: none !important;
+    transform: rotateY(-180deg) scale(0.5) translateZ(-100px) !important;
+    visibility: hidden;
 }
 
 /* Состояние 1: Первое раскрытие - кейсы */

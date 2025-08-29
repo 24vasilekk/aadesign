@@ -323,12 +323,43 @@ const Books3D = {
     },
     
     updateBookState(container, state) {
-        // Удаляем все предыдущие состояния
+        // Сначала удаляем все предыдущие состояния
         container.classList.remove('state-0', 'state-1', 'state-2');
         
-        // Добавляем новое состояние
-        container.classList.add(`state-${state}`);
-        container.dataset.state = state.toString();
+        // Принудительно скрываем все spread-ы
+        const spreads = container.querySelectorAll('.book-spread');
+        spreads.forEach(spread => {
+            spread.classList.remove('active');
+            spread.style.opacity = '0';
+            spread.style.pointerEvents = 'none';
+            spread.style.visibility = 'hidden';
+        });
+        
+        // Небольшая задержка для правильного применения стилей
+        setTimeout(() => {
+            // Добавляем новое состояние
+            container.classList.add(`state-${state}`);
+            container.dataset.state = state.toString();
+            
+            // Активируем нужный spread только если не закрываем
+            if (state === 1) {
+                const spread1 = container.querySelector('.book-spread-1');
+                if (spread1) {
+                    spread1.classList.add('active');
+                    spread1.style.opacity = '1';
+                    spread1.style.pointerEvents = 'all';
+                    spread1.style.visibility = 'visible';
+                }
+            } else if (state === 2) {
+                const spread2 = container.querySelector('.book-spread-2');
+                if (spread2) {
+                    spread2.classList.add('active');
+                    spread2.style.opacity = '1';
+                    spread2.style.pointerEvents = 'all';
+                    spread2.style.visibility = 'visible';
+                }
+            }
+        }, 50);
         
         // Добавляем визуальный эффект при переходе
         const book = container.querySelector('.book');
@@ -340,30 +371,25 @@ const Books3D = {
         setTimeout(() => {
             book.style.transform = originalTransform || '';
         }, 150);
-        
-        // Обновляем состояние spread-ов для новой структуры
-        const spread1 = container.querySelector('.book-spread-1');
-        const spread2 = container.querySelector('.book-spread-2');
-        
-        if (spread1 && spread2) {
-            // Убираем активные классы
-            spread1.classList.remove('active');
-            spread2.classList.remove('active');
-            
-            // Добавляем нужный активный класс в зависимости от состояния
-            if (state === 1) {
-                spread1.classList.add('active');
-            } else if (state === 2) {
-                spread2.classList.add('active');
-            }
-        }
     },
     
     // Auto-close books when switching sections
     closeAllBooks() {
         const bookContainers = document.querySelectorAll('.book-container');
         bookContainers.forEach(container => {
-            this.updateBookState(container, 0);
+            // Принудительно закрываем все книги
+            container.classList.remove('state-1', 'state-2');
+            container.classList.add('state-0');
+            container.dataset.state = '0';
+            
+            // Скрываем все spread-ы
+            const spreads = container.querySelectorAll('.book-spread');
+            spreads.forEach(spread => {
+                spread.classList.remove('active');
+                spread.style.opacity = '0';
+                spread.style.pointerEvents = 'none';
+                spread.style.visibility = 'hidden';
+            });
         });
     },
     
