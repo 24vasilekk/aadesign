@@ -1,0 +1,105 @@
+{
+  "name": "aadesign-web",
+  "version": "2.1.0",
+  "description": "A&A Design - Кастомные журналы Telegram Web App с интерактивными 3D книгами",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve -s . -l $PORT",
+    "dev": "npx serve -s . -l 3000",
+    "build": "echo 'No build step required for static files'",
+    "test": "echo 'No tests specified'",
+    "validate-images": "node scripts/validate-images.js",
+    "deploy": "echo 'Deploy to your hosting service'",
+    "lint": "npx htmlhint index.html && npx stylelint css/styles.css"
+  },
+  "keywords": [
+    "telegram",
+    "webapp",
+    "journals",
+    "custom",
+    "design",
+    "aadesign",
+    "3d",
+    "books",
+    "interactive",
+    "css3d",
+    "animation"
+  ],
+  "author": {
+    "name": "A&A Design",
+    "email": "info@aadesign.store",
+    "url": "https://t.me/aadesingmag"
+  },
+  "contributors": [
+    {
+      "name": "A&A Design Team",
+      "url": "https://t.me/cosmeticsourc"
+    }
+  ],
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "serve": "^14.2.1",
+    "htmlhint": "^1.1.4",
+    "stylelint": "^15.10.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aadesign/web-app"
+  },
+  "bugs": {
+    "url": "https://github.com/aadesign/web-app/issues"
+  },
+  "homepage": "https://aadesign.store",
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead",
+    "iOS >= 12",
+    "Android >= 6"
+  ],
+  "config": {
+    "serve": {
+      "port": 3000,
+      "host": "localhost"
+    }
+  },
+  "files": [
+    "index.html",
+    "css/",
+    "js/",
+    "assets/",
+    "README.md"
+  ],
+  "funding": {
+    "type": "custom",
+    "url": "https://t.me/cosmeticsourc"
+  },
+  "directories": {
+    "doc": "./docs",
+    "example": "./examples"
+  },
+  "private": false,
+  "preferGlobal": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "optionalDependencies": {},
+  "peerDependencies": {},
+  "bundleDependencies": [],
+  "os": [
+    "darwin",
+    "linux",
+    "win32"
+  ],
+  "cpu": [
+    "x64",
+    "arm64"
+  ],
+  "workspaces": [],
+  "type": "module"
+}
