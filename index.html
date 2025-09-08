@@ -34,7 +34,7 @@
     <nav class="nav-tabs">
         <button class="nav-tab active" data-section="shop">Магазин</button>
         <button class="nav-tab" data-section="cases">Кейсы</button>
-        <button class="nav-tab" data-section="reviews">Отзывы</button>
+        <!-- <button class="nav-tab" data-section="reviews">Отзывы</button> -->
         <button class="nav-tab" data-section="faq">FAQ</button>
     </nav>
 
@@ -134,84 +134,102 @@
             </div>
         </section>
 
-        <!-- Cases Section - UPDATED WITH NEW 3D BOOKS -->
+        <!-- Cases Section - ONE BOOK WITH 5 SPREADS -->
         <section id="cases" class="section" style="text-align: center;">
             <h2 style="margin-bottom: 30px; text-align: center;">Наши работы</h2>
-            <p style="text-align: center; margin-bottom: 30px; opacity: 0.8; font-size: 14px;">Нажмите на книгу, чтобы раскрыть её и посмотреть примеры работ 📖</p>
+            <p style="text-align: center; margin-bottom: 30px; opacity: 0.8; font-size: 14px;">Нажмите на книгу, чтобы перелистнуть страницы 📖</p>
             
             <div class="books-grid">
-                <!-- Книга 1: Журнал для мамы -->
+                <!-- Единственная книга с 5 разворотами -->
                 <div class="book-container" data-book="1" data-state="0">
                     <div class="book">
                         <!-- Корешок -->
                         <div class="book-spine"></div>
                         
-                        <!-- Обложка -->
+                        <!-- Обложка (только изображение без текста) -->
                         <div class="book-cover">
-                            <div class="page-content" style="background: linear-gradient(135deg, var(--light-pink), var(--primary-pink)); border-radius: 5px 15px 15px 5px;">
-                                <div style="text-align: center; color: var(--black);">
-                                    <div style="font-size: 48px; margin-bottom: 20px;">📖</div>
-                                    <div style="font-size: 18px; font-weight: bold;">Журнал для мамы</div>
-                                    <div style="font-size: 12px; opacity: 0.8; margin-top: 10px;">Нажмите, чтобы раскрыть</div>
-                                </div>
+                            <div class="page-content" style="padding: 0; background: white; border-radius: 5px 15px 15px 5px;">
+                                <img src="assets/images/cases/cover.png" alt="Обложка журнала" style="width: 100%; height: 100%; object-fit: cover; border-radius: 5px 15px 15px 5px;" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, var(--light-pink), var(--primary-pink))'; this.parentElement.innerHTML = '<div style=\'font-size: 48px; display: flex; align-items: center; justify-content: center; height: 100%; color: var(--black);\'>📖</div>';">
                             </div>
                         </div>
                         
-                        <!-- Первый разворот - Кейсы -->
+                        <!-- Первый разворот -->
                         <div class="book-spread book-spread-1">
                             <div class="page-left">
-                                <div class="page-content">
-                                    <img src="assets/images/cases/mom-journal-1.png" alt="Журнал для мамы - кейс 1" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, var(--light-pink), var(--primary-pink))'; this.parentElement.innerHTML += '<div style=\'font-size: 36px; display: flex; align-items: center; justify-content: center; height: 100%;\'>👩‍👧</div>';">
-                                    <div class="page-info">
-                                        <h4>Кейс 1</h4>
-                                        <p>Семейные фото и теплые воспоминания о маме</p>
-                                    </div>
+                                <div class="page-content" style="padding: 0;">
+                                    <img src="assets/images/cases/spread-1-left.png" alt="Разворот 1 - левая страница" style="width: 100%; height: 100%; object-fit: cover; border-radius: 5px;" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, var(--light-pink), var(--primary-pink))'; this.parentElement.innerHTML = '<div style=\'font-size: 36px; display: flex; align-items: center; justify-content: center; height: 100%;\'>📄</div>';">
                                 </div>
                             </div>
                             <div class="page-right">
-                                <div class="page-content">
-                                    <img src="assets/images/cases/mom-journal-2.png" alt="Журнал для мамы - кейс 2" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, var(--primary-pink), var(--light-pink))'; this.parentElement.innerHTML += '<div style=\'font-size: 36px; display: flex; align-items: center; justify-content: center; height: 100%;\'>💝</div>';">
-                                    <div class="page-info">
-                                        <h4>Кейс 2</h4>
-                                        <p>Рукописные письма и личные истории</p>
-                                    </div>
+                                <div class="page-content" style="padding: 0;">
+                                    <img src="assets/images/cases/spread-1-right.png" alt="Разворот 1 - правая страница" style="width: 100%; height: 100%; object-fit: cover; border-radius: 5px;" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, var(--primary-pink), var(--light-pink))'; this.parentElement.innerHTML = '<div style=\'font-size: 36px; display: flex; align-items: center; justify-content: center; height: 100%;\'>📄</div>';">
                                 </div>
                             </div>
                         </div>
                         
-                        <!-- Второй разворот - Описание -->
+                        <!-- Второй разворот -->
                         <div class="book-spread book-spread-2">
                             <div class="page-left">
-                                <div class="page-content">
-                                    <div class="description-content">
-                                        <h4>Описание проекта</h4>
-                                        <ul>
-                                            <li><strong>Тираж:</strong> Размер M</li>
-                                            <li><strong>Страницы:</strong> 16 страниц</li>
-                                            <li><strong>Особенности:</strong> Семейные фото, рукописные письма</li>
-                                            <li><strong>Время:</strong> 5-8 дней</li>
-                                        </ul>
-                                    </div>
+                                <div class="page-content" style="padding: 0;">
+                                    <img src="assets/images/cases/spread-2-left.png" alt="Разворот 2 - левая страница" style="width: 100%; height: 100%; object-fit: cover; border-radius: 5px;" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, var(--light-pink), var(--primary-pink))'; this.parentElement.innerHTML = '<div style=\'font-size: 36px; display: flex; align-items: center; justify-content: center; height: 100%;\'>📄</div>';">
                                 </div>
                             </div>
                             <div class="page-right">
-                                <div class="page-content">
-                                    <div class="description-content">
-                                        <h4>Отзыв клиента</h4>
-                                        <blockquote>"Мама плакала от счастья! Это лучший подарок, который я когда-либо дарила. Качество печати превзошло все ожидания!"</blockquote>
-                                        <cite>— Анна, Москва</cite>
-                                    </div>
+                                <div class="page-content" style="padding: 0;">
+                                    <img src="assets/images/cases/spread-2-right.png" alt="Разворот 2 - правая страница" style="width: 100%; height: 100%; object-fit: cover; border-radius: 5px;" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, var(--primary-pink), var(--light-pink))'; this.parentElement.innerHTML = '<div style=\'font-size: 36px; display: flex; align-items: center; justify-content: center; height: 100%;\'>📄</div>';">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Третий разворот -->
+                        <div class="book-spread book-spread-3">
+                            <div class="page-left">
+                                <div class="page-content" style="padding: 0;">
+                                    <img src="assets/images/cases/spread-3-left.png" alt="Разворот 3 - левая страница" style="width: 100%; height: 100%; object-fit: cover; border-radius: 5px;" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, var(--light-pink), var(--primary-pink))'; this.parentElement.innerHTML = '<div style=\'font-size: 36px; display: flex; align-items: center; justify-content: center; height: 100%;\'>📄</div>';">
+                                </div>
+                            </div>
+                            <div class="page-right">
+                                <div class="page-content" style="padding: 0;">
+                                    <img src="assets/images/cases/spread-3-right.png" alt="Разворот 3 - правая страница" style="width: 100%; height: 100%; object-fit: cover; border-radius: 5px;" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, var(--primary-pink), var(--light-pink))'; this.parentElement.innerHTML = '<div style=\'font-size: 36px; display: flex; align-items: center; justify-content: center; height: 100%;\'>📄</div>';">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Четвертый разворот -->
+                        <div class="book-spread book-spread-4">
+                            <div class="page-left">
+                                <div class="page-content" style="padding: 0;">
+                                    <img src="assets/images/cases/spread-4-left.png" alt="Разворот 4 - левая страница" style="width: 100%; height: 100%; object-fit: cover; border-radius: 5px;" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, var(--light-pink), var(--primary-pink))'; this.parentElement.innerHTML = '<div style=\'font-size: 36px; display: flex; align-items: center; justify-content: center; height: 100%;\'>📄</div>';">
+                                </div>
+                            </div>
+                            <div class="page-right">
+                                <div class="page-content" style="padding: 0;">
+                                    <img src="assets/images/cases/spread-4-right.png" alt="Разворот 4 - правая страница" style="width: 100%; height: 100%; object-fit: cover; border-radius: 5px;" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, var(--primary-pink), var(--light-pink))'; this.parentElement.innerHTML = '<div style=\'font-size: 36px; display: flex; align-items: center; justify-content: center; height: 100%;\'>📄</div>';">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Пятый разворот -->
+                        <div class="book-spread book-spread-5">
+                            <div class="page-left">
+                                <div class="page-content" style="padding: 0;">
+                                    <img src="assets/images/cases/spread-5-left.png" alt="Разворот 5 - левая страница" style="width: 100%; height: 100%; object-fit: cover; border-radius: 5px;" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, var(--light-pink), var(--primary-pink))'; this.parentElement.innerHTML = '<div style=\'font-size: 36px; display: flex; align-items: center; justify-content: center; height: 100%;\'>📄</div>';">
+                                </div>
+                            </div>
+                            <div class="page-right">
+                                <div class="page-content" style="padding: 0;">
+                                    <img src="assets/images/cases/spread-5-right.png" alt="Разворот 5 - правая страница" style="width: 100%; height: 100%; object-fit: cover; border-radius: 5px;" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, var(--primary-pink), var(--light-pink))'; this.parentElement.innerHTML = '<div style=\'font-size: 36px; display: flex; align-items: center; justify-content: center; height: 100%;\'>📄</div>';">
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Книга 2: Love Story -->
+                <!-- Остальные 3 книги ЗАКОММЕНТИРОВАНЫ -->
+                <!--
                 <div class="book-container" data-book="2" data-state="0">
                     <div class="book">
                         <div class="book-spine"></div>
-                        
                         <div class="book-cover">
                             <div class="page-content" style="background: linear-gradient(135deg, #FFE3E7, #FF69B4); border-radius: 5px 15px 15px 5px;">
                                 <div style="text-align: center; color: white;">
@@ -221,60 +239,12 @@
                                 </div>
                             </div>
                         </div>
-                        
-                        <div class="book-spread book-spread-1">
-                            <div class="page-left">
-                                <div class="page-content">
-                                    <img src="assets/images/cases/love-story-1.png" alt="Love Story - кейс 1" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #FFE3E7, #FF69B4)'; this.parentElement.innerHTML += '<div style=\'font-size: 36px; display: flex; align-items: center; justify-content: center; height: 100%;\'>🌹</div>';">
-                                    <div class="page-info">
-                                        <h4>История знакомства</h4>
-                                        <p>Первые свидания и романтические моменты</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="page-right">
-                                <div class="page-content">
-                                    <img src="assets/images/cases/love-story-2.png" alt="Love Story - кейс 2" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #FF69B4, #FFE3E7)'; this.parentElement.innerHTML += '<div style=\'font-size: 36px; display: flex; align-items: center; justify-content: center; height: 100%;\'>✈️</div>';">
-                                    <div class="page-info">
-                                        <h4>Путешествия вместе</h4>
-                                        <p>Совместные приключения и воспоминания</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="book-spread book-spread-2">
-                            <div class="page-left">
-                                <div class="page-content">
-                                    <div class="description-content">
-                                        <h4>Детали проекта</h4>
-                                        <ul>
-                                            <li><strong>Тираж:</strong> Размер L</li>
-                                            <li><strong>Страницы:</strong> 20 страниц</li>
-                                            <li><strong>Особенности:</strong> Фото с путешествий, билеты, открытки</li>
-                                            <li><strong>Время:</strong> 7-10 дней</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="page-right">
-                                <div class="page-content">
-                                    <div class="description-content">
-                                        <h4>Отзыв клиента</h4>
-                                        <blockquote>"Девушка была в восторге! Теперь заказываю всем друзьям. Такой романтичный и трогательный подарок получился!"</blockquote>
-                                        <cite>— Максим, СПб</cite>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
 
-                <!-- Книга 3: Лучшей подруге -->
                 <div class="book-container" data-book="3" data-state="0">
                     <div class="book">
                         <div class="book-spine"></div>
-                        
                         <div class="book-cover">
                             <div class="page-content" style="background: linear-gradient(135deg, #FFE3E7, #FFB6C1); border-radius: 5px 15px 15px 5px;">
                                 <div style="text-align: center; color: var(--black);">
@@ -284,60 +254,12 @@
                                 </div>
                             </div>
                         </div>
-                        
-                        <div class="book-spread book-spread-1">
-                            <div class="page-left">
-                                <div class="page-content">
-                                    <img src="assets/images/cases/friend-journal-1.png" alt="Журнал подруге - кейс 1" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #FFE3E7, #FFB6C1)'; this.parentElement.innerHTML += '<div style=\'font-size: 36px; display: flex; align-items: center; justify-content: center; height: 100%;\'>🎉</div>';">
-                                    <div class="page-info">
-                                        <h4>Веселые моменты</h4>
-                                        <p>Яркие фото и смешные истории</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="page-right">
-                                <div class="page-content">
-                                    <img src="assets/images/cases/friend-journal-2.png" alt="Журнал подруге - кейс 2" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #FFB6C1, #FFE3E7)'; this.parentElement.innerHTML += '<div style=\'font-size: 36px; display: flex; align-items: center; justify-content: center; height: 100%;\'>🤳</div>';">
-                                    <div class="page-info">
-                                        <h4>Селфи и мемы</h4>
-                                        <p>Внутренние шутки и воспоминания</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="book-spread book-spread-2">
-                            <div class="page-left">
-                                <div class="page-content">
-                                    <div class="description-content">
-                                        <h4>Характеристики</h4>
-                                        <ul>
-                                            <li><strong>Тираж:</strong> Размер M</li>
-                                            <li><strong>Страницы:</strong> 16 страниц</li>
-                                            <li><strong>Особенности:</strong> Яркие фото, мемы, шутки</li>
-                                            <li><strong>Время:</strong> 5-8 дней</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="page-right">
-                                <div class="page-content">
-                                    <div class="description-content">
-                                        <h4>Отзыв клиента</h4>
-                                        <blockquote>"Подруга смеялась и плакала одновременно! Лучший подарок! Столько воспоминаний в одной книге."</blockquote>
-                                        <cite>— Елена, Казань</cite>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
 
-                <!-- Книга 4: Семейная история -->
                 <div class="book-container" data-book="4" data-state="0">
                     <div class="book">
                         <div class="book-spine"></div>
-                        
                         <div class="book-cover">
                             <div class="page-content" style="background: linear-gradient(135deg, #FFE3E7, #DDBEA9); border-radius: 5px 15px 15px 5px;">
                                 <div style="text-align: center; color: var(--black);">
@@ -347,71 +269,26 @@
                                 </div>
                             </div>
                         </div>
-                        
-                        <div class="book-spread book-spread-1">
-                            <div class="page-left">
-                                <div class="page-content">
-                                    <img src="assets/images/cases/family-journal-1.png" alt="Семейная история - кейс 1" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #FFE3E7, #DDBEA9)'; this.parentElement.innerHTML += '<div style=\'font-size: 36px; display: flex; align-items: center; justify-content: center; height: 100%;\'>🏡</div>';">
-                                    <div class="page-info">
-                                        <h4>Семейные традиции</h4>
-                                        <p>Старые фотографии и семейные истории</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="page-right">
-                                <div class="page-content">
-                                    <img src="assets/images/cases/family-journal-2.png" alt="Семейная история - кейс 2" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #DDBEA9, #FFE3E7)'; this.parentElement.innerHTML += '<div style=\'font-size: 36px; display: flex; align-items: center; justify-content: center; height: 100%;\'>🌳</div>';">
-                                    <div class="page-info">
-                                        <h4>Генеалогическое древо</h4>
-                                        <p>История рода и семейные ценности</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="book-spread book-spread-2">
-                            <div class="page-left">
-                                <div class="page-content">
-                                    <div class="description-content">
-                                        <h4>Описание работы</h4>
-                                        <ul>
-                                            <li><strong>Тираж:</strong> Размер XL</li>
-                                            <li><strong>Страницы:</strong> 30 страниц</li>
-                                            <li><strong>Особенности:</strong> Архивные фото, родословная</li>
-                                            <li><strong>Время:</strong> 10-14 дней</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="page-right">
-                                <div class="page-content">
-                                    <div class="description-content">
-                                        <h4>Отзыв клиента</h4>
-                                        <blockquote>"Вся семья была в восторге! Теперь храним как семейную реликвию. Дети с удовольствием изучают историю рода."</blockquote>
-                                        <cite>— Семья Петровых</cite>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
+                -->
             </div>
 
             <div class="interaction-hint">
                 <p style="text-align: center; margin-top: 30px; color: var(--accent-red); font-size: 12px;">
-                    💡 <strong>Инструкция:</strong> 1 клик - раскрыть книгу (кейс) • 2 клик - перелистнуть (описание) • 3 клик - закрыть книгу
+                    💡 <strong>Инструкция:</strong> Кликайте на книгу для просмотра разворотов • 6 кликов для полного цикла
                 </p>
             </div>
         </section>
 
-        <!-- Reviews Section -->
+        <!-- Reviews Section - COMMENTED OUT -->
+        <!--
         <section id="reviews" class="section">
             <h2 style="margin-bottom: 20px; text-align: center;">Отзывы клиентов</h2>
             <div class="reviews-container">
                 <div class="reviews-slider" id="reviewsSlider">
                     <div class="review-card">
                         <div class="review-photo">
-                            <!-- Место для фото отзыва -->
                             <img src="assets/images/review1.jpg" alt="Отзыв 1" onerror="this.style.display='none'; this.parentElement.innerHTML='📷';" style="width: 100%; height: 100%; object-fit: cover;">
                         </div>
                         <p class="review-text">"Заказывала журнал маме на день рождения. Она плакала от счастья! Качество печати отличное, дизайн превзошел все ожидания."</p>
@@ -420,7 +297,6 @@
                     
                     <div class="review-card">
                         <div class="review-photo">
-                            <!-- Место для фото отзыва -->
                             <img src="assets/images/review2.jpg" alt="Отзыв 2" onerror="this.style.display='none'; this.parentElement.innerHTML='📷';" style="width: 100%; height: 100%; object-fit: cover;">
                         </div>
                         <p class="review-text">"Делал подарок девушке на годовщину. Ребята помогли с идеями, получилось очень душевно. Рекомендую!"</p>
@@ -429,7 +305,6 @@
                     
                     <div class="review-card">
                         <div class="review-photo">
-                            <!-- Место для фото отзыва -->
                             <img src="assets/images/review3.jpg" alt="Отзыв 3" onerror="this.style.display='none'; this.parentElement.innerHTML='📷';" style="width: 100%; height: 100%; object-fit: cover;">
                         </div>
                         <p class="review-text">"Очень крутая идея для подарка! Заказывала для подруги, она была в восторге. Быстро сделали, качество супер!"</p>
@@ -443,6 +318,7 @@
                 </div>
             </div>
         </section>
+        -->
 
         <!-- FAQ Section -->
         <section id="faq" class="section">
@@ -451,35 +327,35 @@
             <div class="faq-item">
                 <div class="faq-question">Какой формат журнала?</div>
                 <div class="faq-answer">
-                    Мы печатаем журналы формата А4 на качественной плотной бумаге. Обложка ламинированная, страницы сшиты профессиональным способом.
+                    Мы печатаем журналы формата А4 на качественной плотной бумаге. Обложка ламинированная, страницы на скобе.
                 </div>
             </div>
             
             <div class="faq-item">
                 <div class="faq-question">Как происходит процесс заказа?</div>
                 <div class="faq-answer">
-                    После оформления заказа наш дизайнер свяжется с вами для обсуждения деталей. Вы присылаете фото и тексты, мы создаем макет. После согласования отправляем в печать.
+                    После того как вы свяжетесь с менеджером вам останется выбрать темы для разворотов. Мы предложим для вас множество вариантов наполнения. От вас требуется текста и фотографии, всю остальную работу сделаем мы.
                 </div>
             </div>
             
             <div class="faq-item">
-                <div class="faq-question">Можно ли внести правки в макет?</div>
+                <div class="faq-question">Вы точно сделаете журнал в том стиле, который я захочу?</div>
                 <div class="faq-answer">
-                    Конечно! Мы предоставляем макет на согласование и вносим до 3-х правок бесплатно. Ваш журнал будет именно таким, как вы хотите.
+                    Конечно! Вы можете вносить любые правки, весь промежуточный результат мы скидываем вам на одобрение.
                 </div>
             </div>
             
             <div class="faq-item">
                 <div class="faq-question">Как осуществляется доставка?</div>
                 <div class="faq-answer">
-                    Доставка по Москве курьером — 300₽, самовывоз бесплатно. Отправляем по всей России через СДЭК или Почту России.
+                    Доставка осуществляется СДЭК, Яндекс Маркет и Почта России. Москва и Обнинск возможна личная встреча/самовывоз по договоренности.
                 </div>
             </div>
 
             <div class="faq-item">
-                <div class="faq-question">Какие фотографии подходят для журнала?</div>
+                <div class="faq-question">Я хочу подарить журнал, но у меня нет идей, что делать?</div>
                 <div class="faq-answer">
-                    Лучше всего подходят фотографии в высоком разрешении (от 1920x1080). Можно использовать фото с телефона, главное чтобы они были четкими. Мы поможем с обработкой и ретушью при необходимости.
+                    Мы подготовили для вас 30+ идей для разворотов вашего журнала, так что вы точно найдете для себя подходящий вариант!
                 </div>
             </div>
 

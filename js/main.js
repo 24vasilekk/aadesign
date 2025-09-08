@@ -1,6 +1,6 @@
 /**
  * A&A Design - Custom Journals
- * Main JavaScript File
+ * Main JavaScript File - Updated for 5 Spreads
  */
 
 // ================================
@@ -206,7 +206,7 @@ const Navigation = {
             
             // Только если горизонтальный свайп больше вертикального
             if (horizontalDistance > verticalDistance && horizontalDistance > swipeThreshold) {
-                const tabs = ['shop', 'cases', 'reviews', 'faq'];
+                const tabs = ['shop', 'cases', 'faq']; // Removed 'reviews'
                 const currentIndex = tabs.indexOf(this.currentSection);
                 
                 if (touchStartX - touchEndX > swipeThreshold) {
@@ -226,9 +226,11 @@ const Navigation = {
 };
 
 // ================================
-// 3D Books Functionality - IMPROVED
+// 3D Books Functionality - UPDATED FOR 5 SPREADS
 // ================================
 const Books3D = {
+    maxSpreads: 5, // Теперь 5 разворотов
+    
     init() {
         this.setupBooks();
     },
@@ -281,17 +283,29 @@ const Books3D = {
         let nextState;
         let actionName;
         
-        // Определяем следующее состояние
+        // Определяем следующее состояние для 6 состояний (0 + 5 разворотов)
         switch(currentState) {
-            case 0: // Закрыто -> Показать кейсы (раскрыть книгу)
+            case 0: // Закрыто -> Первый разворот
                 nextState = 1;
-                actionName = 'open_cases';
+                actionName = 'open_spread_1';
                 break;
-            case 1: // Кейсы -> Показать описание (перелистнуть)
+            case 1: // Первый разворот -> Второй разворот
                 nextState = 2;
-                actionName = 'open_description';
+                actionName = 'open_spread_2';
                 break;
-            case 2: // Описание -> Закрыть
+            case 2: // Второй разворот -> Третий разворот
+                nextState = 3;
+                actionName = 'open_spread_3';
+                break;
+            case 3: // Третий разворот -> Четвертый разворот
+                nextState = 4;
+                actionName = 'open_spread_4';
+                break;
+            case 4: // Четвертый разворот -> Пятый разворот
+                nextState = 5;
+                actionName = 'open_spread_5';
+                break;
+            case 5: // Пятый разворот -> Закрыть
                 nextState = 0;
                 actionName = 'close';
                 break;
@@ -324,7 +338,7 @@ const Books3D = {
     
     updateBookState(container, state) {
         // Сначала удаляем все предыдущие состояния
-        container.classList.remove('state-0', 'state-1', 'state-2');
+        container.classList.remove('state-0', 'state-1', 'state-2', 'state-3', 'state-4', 'state-5');
         
         // Принудительно скрываем все spread-ы
         const spreads = container.querySelectorAll('.book-spread');
@@ -342,21 +356,13 @@ const Books3D = {
             container.dataset.state = state.toString();
             
             // Активируем нужный spread только если не закрываем
-            if (state === 1) {
-                const spread1 = container.querySelector('.book-spread-1');
-                if (spread1) {
-                    spread1.classList.add('active');
-                    spread1.style.opacity = '1';
-                    spread1.style.pointerEvents = 'all';
-                    spread1.style.visibility = 'visible';
-                }
-            } else if (state === 2) {
-                const spread2 = container.querySelector('.book-spread-2');
-                if (spread2) {
-                    spread2.classList.add('active');
-                    spread2.style.opacity = '1';
-                    spread2.style.pointerEvents = 'all';
-                    spread2.style.visibility = 'visible';
+            if (state >= 1 && state <= 5) {
+                const targetSpread = container.querySelector(`.book-spread-${state}`);
+                if (targetSpread) {
+                    targetSpread.classList.add('active');
+                    targetSpread.style.opacity = '1';
+                    targetSpread.style.pointerEvents = 'all';
+                    targetSpread.style.visibility = 'visible';
                 }
             }
         }, 50);
@@ -378,7 +384,7 @@ const Books3D = {
         const bookContainers = document.querySelectorAll('.book-container');
         bookContainers.forEach(container => {
             // Принудительно закрываем все книги
-            container.classList.remove('state-1', 'state-2');
+            container.classList.remove('state-1', 'state-2', 'state-3', 'state-4', 'state-5');
             container.classList.add('state-0');
             container.dataset.state = '0';
             
@@ -410,20 +416,19 @@ const Books3D = {
     // Set specific book state
     setBookState(bookId, state) {
         const container = document.querySelector(`.book-container[data-book="${bookId}"]`);
-        if (container) {
+        if (container && state >= 0 && state <= 5) {
             this.updateBookState(container, state);
         }
     },
     
-    // Open all books to show cases
-    showAllCases() {
-        const bookContainers = document.querySelectorAll('.book-container');
-        bookContainers.forEach(container => {
-            this.updateBookState(container, 1);
-        });
+    // Open book to specific spread
+    openToSpread(bookId, spreadNumber) {
+        if (spreadNumber >= 1 && spreadNumber <= 5) {
+            this.setBookState(bookId, spreadNumber);
+        }
     },
     
-    // Demo mode - automatically cycle through states
+    // Demo mode - automatically cycle through all states
     startDemo() {
         const bookContainers = document.querySelectorAll('.book-container');
         let currentIndex = 0;
@@ -435,33 +440,53 @@ const Books3D = {
                 this.flipBook(container);
                 
                 currentState++;
-                if (currentState > 2) {
+                if (currentState > 5) { // Циклически через все 6 состояний
                     currentState = 0;
                     currentIndex = (currentIndex + 1) % bookContainers.length;
                 }
             }
             
             // Schedule next flip
-            setTimeout(flipNext, 3000);
+            setTimeout(flipNext, 2000); // Быстрее для демо
         };
         
         // Start demo after a delay
         setTimeout(flipNext, 1000);
     },
     
-    // Get book info for analytics
+    // Get book info for analytics with updated state names
     getBookInfo(bookId) {
         const container = document.querySelector(`.book-container[data-book="${bookId}"]`);
         if (container) {
-            const title = container.querySelector('.book-cover .page-content div:nth-child(2)')?.textContent || `Book ${bookId}`;
             const state = parseInt(container.dataset.state || '0');
             
             return {
                 id: bookId,
-                title: title,
                 state: state,
-                stateNames: ['closed', 'cases', 'description']
+                stateNames: ['closed', 'spread-1', 'spread-2', 'spread-3', 'spread-4', 'spread-5'],
+                totalStates: 6,
+                maxSpreads: 5
             };
+        }
+        return null;
+    },
+    
+    // Check if book is open
+    isBookOpen(bookId) {
+        const container = document.querySelector(`.book-container[data-book="${bookId}"]`);
+        if (container) {
+            const state = parseInt(container.dataset.state || '0');
+            return state > 0;
+        }
+        return false;
+    },
+    
+    // Get current spread number
+    getCurrentSpread(bookId) {
+        const container = document.querySelector(`.book-container[data-book="${bookId}"]`);
+        if (container) {
+            const state = parseInt(container.dataset.state || '0');
+            return state === 0 ? null : state;
         }
         return null;
     }
@@ -640,7 +665,7 @@ const Shop = {
 };
 
 // ================================
-// Reviews Slider
+// Reviews Slider - DISABLED (Reviews section is hidden)
 // ================================
 const ReviewsSlider = {
     currentSlide: 0,
@@ -650,87 +675,9 @@ const ReviewsSlider = {
     touchEndX: 0,
     
     init() {
-        this.setupDots();
-        this.setupTouch();
-        this.startAutoPlay();
-    },
-    
-    setupDots() {
-        const dots = document.querySelectorAll('.dot');
-        dots.forEach((dot, index) => {
-            dot.addEventListener('click', () => {
-                this.goToSlide(index);
-                this.stopAutoPlay();
-                this.startAutoPlay();
-                TelegramApp.hapticFeedback('light');
-            });
-        });
-    },
-    
-    setupTouch() {
-        const slider = document.querySelector('.reviews-slider');
-        if (!slider) return;
-        
-        slider.addEventListener('touchstart', (e) => {
-            this.touchStartX = e.changedTouches[0].screenX;
-            this.stopAutoPlay();
-        });
-        
-        slider.addEventListener('touchend', (e) => {
-            this.touchEndX = e.changedTouches[0].screenX;
-            this.handleSwipe();
-            this.startAutoPlay();
-        });
-    },
-    
-    handleSwipe() {
-        const swipeThreshold = 50;
-        
-        if (this.touchStartX - this.touchEndX > swipeThreshold) {
-            this.nextSlide();
-        } else if (this.touchEndX - this.touchStartX > swipeThreshold) {
-            this.prevSlide();
-        }
-    },
-    
-    goToSlide(index) {
-        this.currentSlide = index;
-        this.updateSlider();
-    },
-    
-    nextSlide() {
-        this.currentSlide = (this.currentSlide + 1) % this.totalSlides;
-        this.updateSlider();
-    },
-    
-    prevSlide() {
-        this.currentSlide = (this.currentSlide - 1 + this.totalSlides) % this.totalSlides;
-        this.updateSlider();
-    },
-    
-    updateSlider() {
-        const slider = document.getElementById('reviewsSlider');
-        const dots = document.querySelectorAll('.dot');
-        
-        if (slider) {
-            slider.style.transform = `translateX(-${this.currentSlide * 100}%)`;
-        }
-        
-        dots.forEach((dot, index) => {
-            dot.classList.toggle('active', index === this.currentSlide);
-        });
-    },
-    
-    startAutoPlay() {
-        this.autoPlayInterval = setInterval(() => {
-            this.nextSlide();
-        }, 5000);
-    },
-    
-    stopAutoPlay() {
-        if (this.autoPlayInterval) {
-            clearInterval(this.autoPlayInterval);
-        }
+        // Reviews section is disabled, so we don't initialize the slider
+        console.log('Reviews section is currently disabled');
+        return;
     }
 };
 
@@ -916,7 +863,7 @@ const Analytics = {
         this.events.push(event);
         
         // Send to Telegram if needed
-        if (eventName === 'page_view' || eventName === 'order' || eventName === 'contact_click') {
+        if (eventName === 'page_view' || eventName === 'order' || eventName === 'contact_click' || eventName === 'book_flip') {
             TelegramApp.sendData({
                 action: 'analytics',
                 event: event
@@ -960,7 +907,7 @@ const App = {
         Navigation.init();
         Shop.init();
         Books3D.init();
-        ReviewsSlider.init();
+        // ReviewsSlider.init(); // Commented out - reviews section is hidden
         FAQ.init();
         Contacts.init();
         Animations.init();
@@ -978,7 +925,8 @@ const App = {
         this.checkConnection();
         
         console.log('✅ A&A Design Web App Ready!');
-        console.log('📖 New 3D Books: Interactive spread-style opening');
+        console.log('📖 Updated: Single book with 5 interactive spreads');
+        console.log('⚠️ Reviews section is currently disabled');
     },
     
     setupErrorHandler() {
