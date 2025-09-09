@@ -1,7 +1,7 @@
 {
   "name": "aadesign-web",
-  "version": "2.2.0",
-  "description": "A&A Design - Кастомные журналы Telegram Web App с интерактивной 3D книгой (8 разворотов)",
+  "version": "2.2.1",
+  "description": "A&A Design - Кастомные журналы Telegram Web App с интерактивной 3D книгой (6 разворотов)",
   "main": "index.html",
   "scripts": {
     "start": "npx serve -s . -l $PORT",
@@ -24,7 +24,7 @@
     "interactive",
     "css3d",
     "animation",
-    "8-spreads",
+    "6-spreads",
     "flipbook"
   ],
   "author": {
@@ -70,9 +70,9 @@
       "host": "localhost"
     },
     "book": {
-      "spreads": 8,
-      "totalStates": 9,
-      "images": 17
+      "spreads": 6,
+      "totalStates": 7,
+      "images": 13
     }
   },
   "files": [
@@ -110,6 +110,16 @@
   "workspaces": [],
   "type": "module",
   "changelog": {
+    "v2.2.1": {
+      "date": "2024-12-19",
+      "changes": [
+        "ИСПРАВЛЕНО: Корректная поддержка 6 разворотов (удалены пустые 7-й и 8-й)",
+        "Обновлена инструкция: 7 кликов для полного цикла",
+        "Исправлена нумерация разворотов в CSS и JavaScript",
+        "Удалены все ссылки на несуществующие spread-7 и spread-8",
+        "Обновлены все файлы для корректной работы с 6 разворотами"
+      ]
+    },
     "v2.2.0": {
       "date": "2024-12-19",
       "changes": [

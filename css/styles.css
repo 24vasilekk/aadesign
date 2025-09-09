@@ -410,7 +410,7 @@ p {
 }
 
 /* ================================
-   3D Books Section - UPDATED FOR 8 SPREADS
+   3D Books Section - UPDATED FOR 6 SPREADS
    ================================ */
 .books-grid {
     display: flex;
@@ -537,7 +537,7 @@ p {
     border-radius: 5px 15px 15px 5px;
 }
 
-/* Состояния книги - ОБНОВЛЕНО ДЛЯ 8 РАЗВОРОТОВ */
+/* Состояния книги - ОБНОВЛЕНО ДЛЯ 6 РАЗВОРОТОВ */
 
 /* Состояние 0: Закрыто */
 .book-container.state-0 .book {
@@ -589,9 +589,7 @@ p {
 .book-container.state-1 .book-spread-3,
 .book-container.state-1 .book-spread-4,
 .book-container.state-1 .book-spread-5,
-.book-container.state-1 .book-spread-6,
-.book-container.state-1 .book-spread-7,
-.book-container.state-1 .book-spread-8 {
+.book-container.state-1 .book-spread-6 {
     opacity: 0;
     pointer-events: none;
     transform: rotateY(90deg) scale(0.8);
@@ -623,9 +621,7 @@ p {
 .book-container.state-2 .book-spread-3,
 .book-container.state-2 .book-spread-4,
 .book-container.state-2 .book-spread-5,
-.book-container.state-2 .book-spread-6,
-.book-container.state-2 .book-spread-7,
-.book-container.state-2 .book-spread-8 {
+.book-container.state-2 .book-spread-6 {
     opacity: 0;
     pointer-events: none;
     transform: rotateY(-90deg) scale(0.8);
@@ -657,9 +653,7 @@ p {
 .book-container.state-3 .book-spread-2,
 .book-container.state-3 .book-spread-4,
 .book-container.state-3 .book-spread-5,
-.book-container.state-3 .book-spread-6,
-.book-container.state-3 .book-spread-7,
-.book-container.state-3 .book-spread-8 {
+.book-container.state-3 .book-spread-6 {
     opacity: 0;
     pointer-events: none;
     transform: rotateY(-90deg) scale(0.8);
@@ -691,9 +685,7 @@ p {
 .book-container.state-4 .book-spread-2,
 .book-container.state-4 .book-spread-3,
 .book-container.state-4 .book-spread-5,
-.book-container.state-4 .book-spread-6,
-.book-container.state-4 .book-spread-7,
-.book-container.state-4 .book-spread-8 {
+.book-container.state-4 .book-spread-6 {
     opacity: 0;
     pointer-events: none;
     transform: rotateY(-90deg) scale(0.8);
@@ -725,9 +717,7 @@ p {
 .book-container.state-5 .book-spread-2,
 .book-container.state-5 .book-spread-3,
 .book-container.state-5 .book-spread-4,
-.book-container.state-5 .book-spread-6,
-.book-container.state-5 .book-spread-7,
-.book-container.state-5 .book-spread-8 {
+.book-container.state-5 .book-spread-6 {
     opacity: 0;
     pointer-events: none;
     transform: rotateY(-90deg) scale(0.8);
@@ -759,77 +749,7 @@ p {
 .book-container.state-6 .book-spread-2,
 .book-container.state-6 .book-spread-3,
 .book-container.state-6 .book-spread-4,
-.book-container.state-6 .book-spread-5,
-.book-container.state-6 .book-spread-7,
-.book-container.state-6 .book-spread-8 {
-    opacity: 0;
-    pointer-events: none;
-    transform: rotateY(-90deg) scale(0.8);
-}
-
-/* Состояние 7: Седьмой разворот */
-.book-container.state-7 .book {
-    transform: rotateY(0deg) rotateX(0deg) scale(0.85);
-    margin: 0 auto;
-}
-
-.book-container.state-7 .book:hover {
-    transform: rotateY(0deg) rotateX(5deg) scale(0.9);
-}
-
-.book-container.state-7 .book-cover {
-    transform: rotateY(-120deg);
-    opacity: 0;
-    pointer-events: none;
-}
-
-.book-container.state-7 .book-spread-7 {
-    opacity: 1;
-    pointer-events: all;
-    transform: rotateY(0deg) scale(1);
-}
-
-.book-container.state-7 .book-spread-1,
-.book-container.state-7 .book-spread-2,
-.book-container.state-7 .book-spread-3,
-.book-container.state-7 .book-spread-4,
-.book-container.state-7 .book-spread-5,
-.book-container.state-7 .book-spread-6,
-.book-container.state-7 .book-spread-8 {
-    opacity: 0;
-    pointer-events: none;
-    transform: rotateY(-90deg) scale(0.8);
-}
-
-/* Состояние 8: Восьмой разворот */
-.book-container.state-8 .book {
-    transform: rotateY(0deg) rotateX(0deg) scale(0.85);
-    margin: 0 auto;
-}
-
-.book-container.state-8 .book:hover {
-    transform: rotateY(0deg) rotateX(5deg) scale(0.9);
-}
-
-.book-container.state-8 .book-cover {
-    transform: rotateY(-120deg);
-    opacity: 0;
-    pointer-events: none;
-}
-
-.book-container.state-8 .book-spread-8 {
-    opacity: 1;
-    pointer-events: all;
-    transform: rotateY(0deg) scale(1);
-}
-
-.book-container.state-8 .book-spread-1,
-.book-container.state-8 .book-spread-2,
-.book-container.state-8 .book-spread-3,
-.book-container.state-8 .book-spread-4,
-.book-container.state-8 .book-spread-5,
-.book-container.state-8 .book-spread-6,
-.book-container.state-8 .book-spread-7 {
+.book-container.state-6 .book-spread-5 {
     opacity: 0;
     pointer-events: none;
     transform: rotateY(-90deg) scale(0.8);
@@ -886,9 +806,7 @@ p {
 .book-container.state-3:hover .book,
 .book-container.state-4:hover .book,
 .book-container.state-5:hover .book,
-.book-container.state-6:hover .book,
-.book-container.state-7:hover .book,
-.book-container.state-8:hover .book {
+.book-container.state-6:hover .book {
     box-shadow: 
         0 0 40px rgba(240, 11, 13, 0.4),
         20px 20px 40px rgba(0, 0, 0, 0.3);
@@ -935,9 +853,7 @@ p {
     .book-container.state-3 .book,
     .book-container.state-4 .book,
     .book-container.state-5 .book,
-    .book-container.state-6 .book,
-    .book-container.state-7 .book,
-    .book-container.state-8 .book {
+    .book-container.state-6 .book {
         transform: rotateY(0deg) rotateX(0deg) scale(0.8);
         margin: 0 auto;
     }

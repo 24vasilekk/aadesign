@@ -1,6 +1,6 @@
 /**
  * A&A Design - Custom Journals
- * Main JavaScript File - Updated for 8 Spreads
+ * Main JavaScript File - Updated for 6 Spreads
  */
 
 // ================================
@@ -226,10 +226,10 @@ const Navigation = {
 };
 
 // ================================
-// 3D Books Functionality - UPDATED FOR 8 SPREADS
+// 3D Books Functionality - UPDATED FOR 6 SPREADS
 // ================================
 const Books3D = {
-    maxSpreads: 8, // Теперь 8 разворотов
+    maxSpreads: 6, // Теперь 6 разворотов
     
     init() {
         this.setupBooks();
@@ -283,7 +283,7 @@ const Books3D = {
         let nextState;
         let actionName;
         
-        // Определяем следующее состояние для 9 состояний (0 + 8 разворотов)
+        // Определяем следующее состояние для 7 состояний (0 + 6 разворотов)
         switch(currentState) {
             case 0: // Закрыто -> Первый разворот
                 nextState = 1;
@@ -309,15 +309,7 @@ const Books3D = {
                 nextState = 6;
                 actionName = 'open_spread_6';
                 break;
-            case 6: // Шестой разворот -> Седьмой разворот
-                nextState = 7;
-                actionName = 'open_spread_7';
-                break;
-            case 7: // Седьмой разворот -> Восьмой разворот
-                nextState = 8;
-                actionName = 'open_spread_8';
-                break;
-            case 8: // Восьмой разворот -> Закрыть
+            case 6: // Шестой разворот -> Закрыть
                 nextState = 0;
                 actionName = 'close';
                 break;
@@ -350,7 +342,7 @@ const Books3D = {
     
     updateBookState(container, state) {
         // Сначала удаляем все предыдущие состояния
-        container.classList.remove('state-0', 'state-1', 'state-2', 'state-3', 'state-4', 'state-5', 'state-6', 'state-7', 'state-8');
+        container.classList.remove('state-0', 'state-1', 'state-2', 'state-3', 'state-4', 'state-5', 'state-6');
         
         // Принудительно скрываем все spread-ы
         const spreads = container.querySelectorAll('.book-spread');
@@ -368,7 +360,7 @@ const Books3D = {
             container.dataset.state = state.toString();
             
             // Активируем нужный spread только если не закрываем
-            if (state >= 1 && state <= 8) {
+            if (state >= 1 && state <= 6) {
                 const targetSpread = container.querySelector(`.book-spread-${state}`);
                 if (targetSpread) {
                     targetSpread.classList.add('active');
@@ -396,7 +388,7 @@ const Books3D = {
         const bookContainers = document.querySelectorAll('.book-container');
         bookContainers.forEach(container => {
             // Принудительно закрываем все книги
-            container.classList.remove('state-1', 'state-2', 'state-3', 'state-4', 'state-5', 'state-6', 'state-7', 'state-8');
+            container.classList.remove('state-1', 'state-2', 'state-3', 'state-4', 'state-5', 'state-6');
             container.classList.add('state-0');
             container.dataset.state = '0';
             
@@ -428,14 +420,14 @@ const Books3D = {
     // Set specific book state
     setBookState(bookId, state) {
         const container = document.querySelector(`.book-container[data-book="${bookId}"]`);
-        if (container && state >= 0 && state <= 8) {
+        if (container && state >= 0 && state <= 6) {
             this.updateBookState(container, state);
         }
     },
     
     // Open book to specific spread
     openToSpread(bookId, spreadNumber) {
-        if (spreadNumber >= 1 && spreadNumber <= 8) {
+        if (spreadNumber >= 1 && spreadNumber <= 6) {
             this.setBookState(bookId, spreadNumber);
         }
     },
@@ -452,7 +444,7 @@ const Books3D = {
                 this.flipBook(container);
                 
                 currentState++;
-                if (currentState > 8) { // Циклически через все 9 состояний
+                if (currentState > 6) { // Циклически через все 7 состояний
                     currentState = 0;
                     currentIndex = (currentIndex + 1) % bookContainers.length;
                 }
@@ -475,9 +467,9 @@ const Books3D = {
             return {
                 id: bookId,
                 state: state,
-                stateNames: ['closed', 'spread-1', 'spread-2', 'spread-3', 'spread-4', 'spread-5', 'spread-6', 'spread-7', 'spread-8'],
-                totalStates: 9,
-                maxSpreads: 8
+                stateNames: ['closed', 'spread-1', 'spread-2', 'spread-3', 'spread-4', 'spread-5', 'spread-6'],
+                totalStates: 7,
+                maxSpreads: 6
             };
         }
         return null;
@@ -937,7 +929,7 @@ const App = {
         this.checkConnection();
         
         console.log('✅ A&A Design Web App Ready!');
-        console.log('📖 Updated: Single book with 8 interactive spreads');
+        console.log('📖 Updated: Single book with 6 interactive spreads');
         console.log('📱 Updated contacts: @aadesignmagg & https://t.me/aadesignmag');
         console.log('⚠️ Reviews section is currently disabled');
     },
