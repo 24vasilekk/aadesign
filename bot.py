@@ -30,7 +30,7 @@ WELCOME_MESSAGE = """
 ⏱ Изготовление от 1 до 14 дней
 🚚 Доставка по всей России
 
-✨ Новинка: Интерактивные 3D книги с кейсами!
+✨ Новинка: Интерактивные 3D книги с кейсами! (8 разворотов)
 
 Нажмите кнопку "🛍 Магазин" ниже, чтобы оформить заказ!
 """
@@ -44,20 +44,19 @@ HELP_MESSAGE = """
 4. Мы свяжемся с вами для уточнения деталей
 
 📖 В разделе "Кейсы" смотрите наши 3D книги:
-• Нажмите на книгу, чтобы перелистнуть страницы
+• Нажмите на книгу, чтобы перелистнуть страницы (8 разворотов!)
 • Изучите примеры наших работ
 • Вдохновляйтесь идеями для своего заказа
 
-💬 По всем вопросам пишите @cosmeticsourc
-📸 Наши работы: @aadesingmag
+💬 По всем вопросам пишите @aadesignmagg
+📢 Наш канал: https://t.me/aadesignmag
 """
 
 CONTACT_MESSAGE = """
 📞 Наши контакты:
 
-📱 Менеджер: @cosmeticsourc
-📷 Instagram: @aadesingmag
-📢 Канал: @aadesingmag
+📱 Менеджер: @aadesignmagg
+📢 Канал: https://t.me/aadesignmag
 
 Пишите в любое время!
 Ответим в течение 30 минут в рабочее время (10:00-20:00 МСК)
@@ -79,7 +78,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
             InlineKeyboardButton("📞 Контакты", callback_data="contacts"),
             InlineKeyboardButton("❓ Помощь", callback_data="help")
         ],
-        [InlineKeyboardButton("📖 Посмотреть 3D кейсы", callback_data="cases_info")]
+        [InlineKeyboardButton("📖 Посмотреть 3D кейсы (8 разворотов)", callback_data="cases_info")]
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
     
@@ -116,25 +115,29 @@ async def button_callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
         cases_info = """
 📖 <b>Интерактивные 3D книги с нашими кейсами!</b>
 
-В разделе "Кейсы" вы найдете 4 интерактивные 3D книги:
+В разделе "Кейсы" вы найдете интерактивную 3D книгу с 8 разворотами:
 
-📚 <b>Наши проекты:</b>
+📚 <b>Наши проекты в одной книге:</b>
 • 🌸 Журнал для мамы
 • 💕 Love Story
 • 👭 Лучшей подруге  
 • 👨‍👩‍👧‍👦 Семейная история
+• 🎓 Выпускной альбом
+• 🎂 День рождения
+• 🎄 Новогодний журнал
+• ✨ И многое другое!
 
 <b>Как пользоваться:</b>
 1. Перейдите в раздел "Кейсы"
-2. Нажмите на любую книгу
-3. Страницы перелистнутся, показав детали проекта
-4. Нажмите снова, чтобы вернуться к обложке
+2. Нажмите на книгу
+3. Продолжайте нажимать для просмотра всех 8 разворотов
+4. 9-й клик закроет книгу
 
 Это поможет вам выбрать стиль для своего заказа! 🎨
 """
         
         keyboard = [[InlineKeyboardButton(
-            text="📖 Открыть кейсы",
+            text="📖 Открыть кейсы (8 разворотов)",
             web_app=WebAppInfo(url=WEB_APP_URL + "#cases")
         )]]
         reply_markup = InlineKeyboardMarkup(keyboard)
@@ -189,11 +192,11 @@ async def web_app_data(update: Update, context: ContextTypes.DEFAULT_TYPE):
 Наш менеджер свяжется с вами в течение 30 минут для уточнения деталей.
 
 💡 <b>Пока ждете:</b>
-• Посмотрите 3D кейсы для вдохновения
+• Посмотрите 3D кейсы для вдохновения (8 разворотов!)
 • Подготовьте фотографии для журнала
 • Подумайте о тематике и стиле
 
-Если у вас есть вопросы, пишите @cosmeticsourc
+Если у вас есть вопросы, пишите @aadesignmagg
 """
             await update.message.reply_text(
                 confirmation_message,
@@ -217,18 +220,10 @@ async def web_app_data(update: Update, context: ContextTypes.DEFAULT_TYPE):
             action = data.get('data', {}).get('action', 'unknown')
             
             if action == 'open':
-                book_names = {
-                    '1': 'Журнал для мамы',
-                    '2': 'Love Story',
-                    '3': 'Лучшей подруге',
-                    '4': 'Семейная история'
-                }
-                book_name = book_names.get(book, f'Книга #{book}')
-                
-                response = f"📖 Вы открыли кейс: <b>{book_name}</b>\n\nПонравился стиль? Закажите похожий журнал!"
+                response = f"📖 Вы открыли интерактивную 3D книгу с 8 разворотами!\n\nПродолжайте нажимать для просмотра всех примеров работ. Понравился стиль? Закажите похожий журнал!"
                 
                 keyboard = [[InlineKeyboardButton(
-                    text="🛒 Заказать похожий",
+                    text="🛒 Заказать журнал",
                     web_app=WebAppInfo(url=WEB_APP_URL + "#shop")
                 )]]
                 reply_markup = InlineKeyboardMarkup(keyboard)
@@ -265,7 +260,7 @@ async def web_app_data(update: Update, context: ContextTypes.DEFAULT_TYPE):
             
             # Отправляем подтверждение клиенту
             await update.message.reply_text(
-                f"✅ Заказ на сумму {total}₽ принят!\n\nМенеджер свяжется с вами в ближайшее время.\n\n💡 Рекомендуем посмотреть наши 3D кейсы для вдохновения!",
+                f"✅ Заказ на сумму {total}₽ принят!\n\nМенеджер свяжется с вами в ближайшее время.\n\n💡 Рекомендуем посмотреть наши 3D кейсы с 8 разворотами для вдохновения!",
                 parse_mode='HTML'
             )
             
@@ -286,9 +281,9 @@ async def web_app_data(update: Update, context: ContextTypes.DEFAULT_TYPE):
             
             # Отправляем благодарность
             thanks_message = {
-                'telegram': "Спасибо! Вы переходите к нашему менеджеру 📱",
-                'instagram': "Отлично! Подписывайтесь на наш Instagram 📷", 
-                'channel': "Супер! Присоединяйтесь к нашему каналу 📢"
+                'telegram_manager': "Спасибо! Вы переходите к нашему менеджеру 📱",
+                'telegram_channel': "Отлично! Присоединяйтесь к нашему каналу 📢", 
+                'telegram_channel_2': "Супер! Подписывайтесь на наш канал 📢"
             }
             
             if platform in thanks_message:
@@ -320,20 +315,20 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
         reply_markup = InlineKeyboardMarkup(keyboard)
         
         await update.message.reply_text(
-            "Для оформления заказа откройте наш магазин с интерактивными 3D кейсами:",
+            "Для оформления заказа откройте наш магазин с интерактивными 3D кейсами (8 разворотов):",
             reply_markup=reply_markup
         )
     
     elif any(word in text for word in ["кейс", "пример", "работы", "посмотреть"]):
         # Если интересуются кейсами
         keyboard = [[InlineKeyboardButton(
-            text="📖 Посмотреть 3D кейсы",
+            text="📖 Посмотреть 3D кейсы (8 разворотов)",
             web_app=WebAppInfo(url=WEB_APP_URL + "#cases")
         )]]
         reply_markup = InlineKeyboardMarkup(keyboard)
         
         await update.message.reply_text(
-            "Посмотрите наши интерактивные 3D кейсы! Нажмите на книги, чтобы перелистнуть страницы:",
+            "Посмотрите наши интерактивные 3D кейсы! Нажмите на книгу, чтобы перелистнуть все 8 разворотов:",
             reply_markup=reply_markup
         )
     
@@ -351,7 +346,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 web_app=WebAppInfo(url=WEB_APP_URL)
             )],
             [InlineKeyboardButton(
-                text="📖 3D Кейсы",
+                text="📖 3D Кейсы (8 разворотов)",
                 web_app=WebAppInfo(url=WEB_APP_URL + "#cases")
             )]
         ]
@@ -360,7 +355,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await update.message.reply_text(
             "Я помогу вам заказать кастомный журнал! 📚\n\n"
             "🛍 Магазин - выберите размер и закажите\n"
-            "📖 3D Кейсы - посмотрите примеры работ\n\n"
+            "📖 3D Кейсы - посмотрите примеры работ (8 разворотов!)\n\n"
             "Команды: /help - помощь, /contacts - контакты",
             reply_markup=reply_markup
         )
@@ -383,29 +378,35 @@ async def stats_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 🎀 Основные показатели:
 • Веб-приложение: активно
-• 3D кейсы: работают
+• 3D кейсы: работают (8 разворотов!)
 • Интеграция с Telegram: ✅
 
 📖 Функционал:
-• Интерактивные 3D книги
+• Интерактивная 3D книга с 8 разворотами
 • Система заказов
 • Аналитика взаимодействий
 • Автоматические уведомления
 
 🛍 Последние обновления:
-• Добавлены 3D книги с кейсами
+• Добавлены 8 разворотов в 3D книгу
+• Обновлены контакты (@aadesignmagg)
 • Улучшена навигация
 • Добавлены haptic отклики
+
+📞 Контакты:
+• Менеджер: @aadesignmagg
+• Канал: https://t.me/aadesignmag
 """
     
     await update.message.reply_text(stats_message, parse_mode='HTML')
 
 def main():
     """Запуск бота"""
-    logger.info(f"Starting A&A Design bot with 3D cases...")
+    logger.info(f"Starting A&A Design bot with 3D cases (8 spreads)...")
     logger.info(f"Bot token: {BOT_TOKEN[:10]}...")
     logger.info(f"Web App URL: {WEB_APP_URL}")
     logger.info(f"Admin ID: {ADMIN_ID}")
+    logger.info(f"Updated contacts: @aadesignmagg & https://t.me/aadesignmag")
     
     # Создаем приложение
     application = Application.builder().token(BOT_TOKEN).build()
@@ -427,10 +428,11 @@ def main():
     application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_message))
     
     # Запускаем бота
-    logger.info("🎀 A&A Design Bot with 3D Cases is starting...")
+    logger.info("🎀 A&A Design Bot with 3D Cases (8 spreads) is starting...")
     print("🎀 A&A Design Bot is running!")
     print(f"📱 Web App: {WEB_APP_URL}")
-    print("📖 Features: 3D interactive books, order system, analytics")
+    print("📖 Features: 3D interactive book with 8 spreads, order system, analytics")
+    print("📞 Updated contacts: @aadesignmagg & https://t.me/aadesignmag")
     print("Press Ctrl+C to stop")
     
     application.run_polling(allowed_updates=Update.ALL_TYPES)

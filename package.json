@@ -1,7 +1,7 @@
 {
   "name": "aadesign-web",
-  "version": "2.1.0",
-  "description": "A&A Design - Кастомные журналы Telegram Web App с интерактивными 3D книгами",
+  "version": "2.2.0",
+  "description": "A&A Design - Кастомные журналы Telegram Web App с интерактивной 3D книгой (8 разворотов)",
   "main": "index.html",
   "scripts": {
     "start": "npx serve -s . -l $PORT",
@@ -23,17 +23,19 @@
     "books",
     "interactive",
     "css3d",
-    "animation"
+    "animation",
+    "8-spreads",
+    "flipbook"
   ],
   "author": {
     "name": "A&A Design",
     "email": "info@aadesign.store",
-    "url": "https://t.me/aadesingmag"
+    "url": "https://t.me/aadesignmag"
   },
   "contributors": [
     {
       "name": "A&A Design Team",
-      "url": "https://t.me/cosmeticsourc"
+      "url": "https://t.me/aadesignmagg"
     }
   ],
   "license": "ISC",
@@ -66,6 +68,11 @@
     "serve": {
       "port": 3000,
       "host": "localhost"
+    },
+    "book": {
+      "spreads": 8,
+      "totalStates": 9,
+      "images": 17
     }
   },
   "files": [
@@ -77,7 +84,7 @@
   ],
   "funding": {
     "type": "custom",
-    "url": "https://t.me/cosmeticsourc"
+    "url": "https://t.me/aadesignmagg"
   },
   "directories": {
     "doc": "./docs",
@@ -101,5 +108,40 @@
     "arm64"
   ],
   "workspaces": [],
-  "type": "module"
+  "type": "module",
+  "changelog": {
+    "v2.2.0": {
+      "date": "2024-12-19",
+      "changes": [
+        "Added 3 new spreads (total: 8 spreads)",
+        "Updated all contacts: @aadesignmagg & https://t.me/aadesignmag", 
+        "Removed Instagram references",
+        "Updated JavaScript logic for 8 spreads support",
+        "Updated CSS styles for 8 book states",
+        "Updated Telegram Bot with new features",
+        "Fixed interaction instructions (9 clicks for full cycle)"
+      ]
+    },
+    "v2.1.1": {
+      "date": "2024-12-15", 
+      "changes": [
+        "Updated FAQ section",
+        "Hidden reviews section temporarily",
+        "Adapted navigation for 3 sections only",
+        "Updated content according to new requirements"
+      ]
+    },
+    "v2.1.0": {
+      "date": "2024-12-10",
+      "changes": [
+        "Added interactive 3D books with flip effect",
+        "4 detailed cases with PNG images", 
+        "3D CSS transformations with realistic shadows",
+        "Modular JavaScript architecture",
+        "Extended user interaction analytics",
+        "Improved Telegram Bot with 3D functions support",
+        "Haptic feedback for mobile devices"
+      ]
+    }
+  }
 }

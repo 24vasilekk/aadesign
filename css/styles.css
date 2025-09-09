@@ -410,7 +410,7 @@ p {
 }
 
 /* ================================
-   3D Books Section - UPDATED FOR 5 SPREADS
+   3D Books Section - UPDATED FOR 8 SPREADS
    ================================ */
 .books-grid {
     display: flex;
@@ -537,7 +537,7 @@ p {
     border-radius: 5px 15px 15px 5px;
 }
 
-/* Состояния книги - ОБНОВЛЕНО ДЛЯ 5 РАЗВОРОТОВ */
+/* Состояния книги - ОБНОВЛЕНО ДЛЯ 8 РАЗВОРОТОВ */
 
 /* Состояние 0: Закрыто */
 .book-container.state-0 .book {
@@ -588,7 +588,10 @@ p {
 .book-container.state-1 .book-spread-2,
 .book-container.state-1 .book-spread-3,
 .book-container.state-1 .book-spread-4,
-.book-container.state-1 .book-spread-5 {
+.book-container.state-1 .book-spread-5,
+.book-container.state-1 .book-spread-6,
+.book-container.state-1 .book-spread-7,
+.book-container.state-1 .book-spread-8 {
     opacity: 0;
     pointer-events: none;
     transform: rotateY(90deg) scale(0.8);
@@ -619,7 +622,10 @@ p {
 .book-container.state-2 .book-spread-1,
 .book-container.state-2 .book-spread-3,
 .book-container.state-2 .book-spread-4,
-.book-container.state-2 .book-spread-5 {
+.book-container.state-2 .book-spread-5,
+.book-container.state-2 .book-spread-6,
+.book-container.state-2 .book-spread-7,
+.book-container.state-2 .book-spread-8 {
     opacity: 0;
     pointer-events: none;
     transform: rotateY(-90deg) scale(0.8);
@@ -650,7 +656,10 @@ p {
 .book-container.state-3 .book-spread-1,
 .book-container.state-3 .book-spread-2,
 .book-container.state-3 .book-spread-4,
-.book-container.state-3 .book-spread-5 {
+.book-container.state-3 .book-spread-5,
+.book-container.state-3 .book-spread-6,
+.book-container.state-3 .book-spread-7,
+.book-container.state-3 .book-spread-8 {
     opacity: 0;
     pointer-events: none;
     transform: rotateY(-90deg) scale(0.8);
@@ -681,7 +690,10 @@ p {
 .book-container.state-4 .book-spread-1,
 .book-container.state-4 .book-spread-2,
 .book-container.state-4 .book-spread-3,
-.book-container.state-4 .book-spread-5 {
+.book-container.state-4 .book-spread-5,
+.book-container.state-4 .book-spread-6,
+.book-container.state-4 .book-spread-7,
+.book-container.state-4 .book-spread-8 {
     opacity: 0;
     pointer-events: none;
     transform: rotateY(-90deg) scale(0.8);
@@ -712,7 +724,112 @@ p {
 .book-container.state-5 .book-spread-1,
 .book-container.state-5 .book-spread-2,
 .book-container.state-5 .book-spread-3,
-.book-container.state-5 .book-spread-4 {
+.book-container.state-5 .book-spread-4,
+.book-container.state-5 .book-spread-6,
+.book-container.state-5 .book-spread-7,
+.book-container.state-5 .book-spread-8 {
+    opacity: 0;
+    pointer-events: none;
+    transform: rotateY(-90deg) scale(0.8);
+}
+
+/* Состояние 6: Шестой разворот */
+.book-container.state-6 .book {
+    transform: rotateY(0deg) rotateX(0deg) scale(0.85);
+    margin: 0 auto;
+}
+
+.book-container.state-6 .book:hover {
+    transform: rotateY(0deg) rotateX(5deg) scale(0.9);
+}
+
+.book-container.state-6 .book-cover {
+    transform: rotateY(-120deg);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.book-container.state-6 .book-spread-6 {
+    opacity: 1;
+    pointer-events: all;
+    transform: rotateY(0deg) scale(1);
+}
+
+.book-container.state-6 .book-spread-1,
+.book-container.state-6 .book-spread-2,
+.book-container.state-6 .book-spread-3,
+.book-container.state-6 .book-spread-4,
+.book-container.state-6 .book-spread-5,
+.book-container.state-6 .book-spread-7,
+.book-container.state-6 .book-spread-8 {
+    opacity: 0;
+    pointer-events: none;
+    transform: rotateY(-90deg) scale(0.8);
+}
+
+/* Состояние 7: Седьмой разворот */
+.book-container.state-7 .book {
+    transform: rotateY(0deg) rotateX(0deg) scale(0.85);
+    margin: 0 auto;
+}
+
+.book-container.state-7 .book:hover {
+    transform: rotateY(0deg) rotateX(5deg) scale(0.9);
+}
+
+.book-container.state-7 .book-cover {
+    transform: rotateY(-120deg);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.book-container.state-7 .book-spread-7 {
+    opacity: 1;
+    pointer-events: all;
+    transform: rotateY(0deg) scale(1);
+}
+
+.book-container.state-7 .book-spread-1,
+.book-container.state-7 .book-spread-2,
+.book-container.state-7 .book-spread-3,
+.book-container.state-7 .book-spread-4,
+.book-container.state-7 .book-spread-5,
+.book-container.state-7 .book-spread-6,
+.book-container.state-7 .book-spread-8 {
+    opacity: 0;
+    pointer-events: none;
+    transform: rotateY(-90deg) scale(0.8);
+}
+
+/* Состояние 8: Восьмой разворот */
+.book-container.state-8 .book {
+    transform: rotateY(0deg) rotateX(0deg) scale(0.85);
+    margin: 0 auto;
+}
+
+.book-container.state-8 .book:hover {
+    transform: rotateY(0deg) rotateX(5deg) scale(0.9);
+}
+
+.book-container.state-8 .book-cover {
+    transform: rotateY(-120deg);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.book-container.state-8 .book-spread-8 {
+    opacity: 1;
+    pointer-events: all;
+    transform: rotateY(0deg) scale(1);
+}
+
+.book-container.state-8 .book-spread-1,
+.book-container.state-8 .book-spread-2,
+.book-container.state-8 .book-spread-3,
+.book-container.state-8 .book-spread-4,
+.book-container.state-8 .book-spread-5,
+.book-container.state-8 .book-spread-6,
+.book-container.state-8 .book-spread-7 {
     opacity: 0;
     pointer-events: none;
     transform: rotateY(-90deg) scale(0.8);
@@ -757,116 +874,6 @@ p {
     z-index: 1;
 }
 
-/* Убрали все подписи и инфо блоки */
-/*
-.page-title {
-    position: absolute;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(0, 0, 0, 0.8);
-    color: white;
-    padding: 8px 16px;
-    border-radius: 20px;
-    font-size: 14px;
-    font-weight: bold;
-    z-index: 2;
-    text-align: center;
-    backdrop-filter: blur(10px);
-}
-
-.page-info {
-    position: absolute;
-    bottom: 15px;
-    left: 15px;
-    right: 15px;
-    background: rgba(255, 255, 255, 0.95);
-    padding: 12px;
-    border-radius: 10px;
-    z-index: 2;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-}
-
-.page-info h4 {
-    font-size: 12px;
-    color: var(--accent-red);
-    margin: 0 0 5px 0;
-    font-weight: bold;
-}
-
-.page-info p {
-    font-size: 10px;
-    color: var(--black);
-    line-height: 1.4;
-    margin: 0;
-}
-
-.description-content {
-    position: relative;
-    z-index: 2;
-    background: rgba(255, 255, 255, 0.95);
-    padding: 15px;
-    border-radius: 10px;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    height: 90%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: left;
-}
-
-.description-content h4 {
-    font-size: 14px;
-    color: var(--accent-red);
-    margin-bottom: 10px;
-    text-align: center;
-    font-weight: bold;
-}
-
-.description-content ul {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 15px 0;
-}
-
-.description-content li {
-    font-size: 11px;
-    color: var(--black);
-    margin-bottom: 6px;
-    padding-left: 15px;
-    position: relative;
-}
-
-.description-content li:before {
-    content: '●';
-    color: var(--primary-pink);
-    position: absolute;
-    left: 0;
-}
-
-.description-content blockquote {
-    font-style: italic;
-    font-size: 11px;
-    color: var(--black);
-    margin: 0;
-    padding: 10px;
-    background: var(--light-pink);
-    border-radius: 8px;
-    border-left: 3px solid var(--accent-red);
-}
-
-.description-content cite {
-    font-size: 10px;
-    color: var(--accent-red);
-    font-weight: bold;
-    text-align: right;
-    display: block;
-    margin-top: 5px;
-}
-*/
-
 /* Световые эффекты */
 .book-container:hover .book {
     box-shadow: 
@@ -878,7 +885,10 @@ p {
 .book-container.state-2:hover .book,
 .book-container.state-3:hover .book,
 .book-container.state-4:hover .book,
-.book-container.state-5:hover .book {
+.book-container.state-5:hover .book,
+.book-container.state-6:hover .book,
+.book-container.state-7:hover .book,
+.book-container.state-8:hover .book {
     box-shadow: 
         0 0 40px rgba(240, 11, 13, 0.4),
         20px 20px 40px rgba(0, 0, 0, 0.3);
@@ -924,7 +934,10 @@ p {
     .book-container.state-2 .book,
     .book-container.state-3 .book,
     .book-container.state-4 .book,
-    .book-container.state-5 .book {
+    .book-container.state-5 .book,
+    .book-container.state-6 .book,
+    .book-container.state-7 .book,
+    .book-container.state-8 .book {
         transform: rotateY(0deg) rotateX(0deg) scale(0.8);
         margin: 0 auto;
     }

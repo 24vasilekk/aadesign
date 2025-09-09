@@ -1,6 +1,6 @@
 /**
  * A&A Design - Custom Journals
- * Main JavaScript File - Updated for 5 Spreads
+ * Main JavaScript File - Updated for 8 Spreads
  */
 
 // ================================
@@ -226,10 +226,10 @@ const Navigation = {
 };
 
 // ================================
-// 3D Books Functionality - UPDATED FOR 5 SPREADS
+// 3D Books Functionality - UPDATED FOR 8 SPREADS
 // ================================
 const Books3D = {
-    maxSpreads: 5, // Теперь 5 разворотов
+    maxSpreads: 8, // Теперь 8 разворотов
     
     init() {
         this.setupBooks();
@@ -283,7 +283,7 @@ const Books3D = {
         let nextState;
         let actionName;
         
-        // Определяем следующее состояние для 6 состояний (0 + 5 разворотов)
+        // Определяем следующее состояние для 9 состояний (0 + 8 разворотов)
         switch(currentState) {
             case 0: // Закрыто -> Первый разворот
                 nextState = 1;
@@ -305,7 +305,19 @@ const Books3D = {
                 nextState = 5;
                 actionName = 'open_spread_5';
                 break;
-            case 5: // Пятый разворот -> Закрыть
+            case 5: // Пятый разворот -> Шестой разворот
+                nextState = 6;
+                actionName = 'open_spread_6';
+                break;
+            case 6: // Шестой разворот -> Седьмой разворот
+                nextState = 7;
+                actionName = 'open_spread_7';
+                break;
+            case 7: // Седьмой разворот -> Восьмой разворот
+                nextState = 8;
+                actionName = 'open_spread_8';
+                break;
+            case 8: // Восьмой разворот -> Закрыть
                 nextState = 0;
                 actionName = 'close';
                 break;
@@ -338,7 +350,7 @@ const Books3D = {
     
     updateBookState(container, state) {
         // Сначала удаляем все предыдущие состояния
-        container.classList.remove('state-0', 'state-1', 'state-2', 'state-3', 'state-4', 'state-5');
+        container.classList.remove('state-0', 'state-1', 'state-2', 'state-3', 'state-4', 'state-5', 'state-6', 'state-7', 'state-8');
         
         // Принудительно скрываем все spread-ы
         const spreads = container.querySelectorAll('.book-spread');
@@ -356,7 +368,7 @@ const Books3D = {
             container.dataset.state = state.toString();
             
             // Активируем нужный spread только если не закрываем
-            if (state >= 1 && state <= 5) {
+            if (state >= 1 && state <= 8) {
                 const targetSpread = container.querySelector(`.book-spread-${state}`);
                 if (targetSpread) {
                     targetSpread.classList.add('active');
@@ -384,7 +396,7 @@ const Books3D = {
         const bookContainers = document.querySelectorAll('.book-container');
         bookContainers.forEach(container => {
             // Принудительно закрываем все книги
-            container.classList.remove('state-1', 'state-2', 'state-3', 'state-4', 'state-5');
+            container.classList.remove('state-1', 'state-2', 'state-3', 'state-4', 'state-5', 'state-6', 'state-7', 'state-8');
             container.classList.add('state-0');
             container.dataset.state = '0';
             
@@ -416,14 +428,14 @@ const Books3D = {
     // Set specific book state
     setBookState(bookId, state) {
         const container = document.querySelector(`.book-container[data-book="${bookId}"]`);
-        if (container && state >= 0 && state <= 5) {
+        if (container && state >= 0 && state <= 8) {
             this.updateBookState(container, state);
         }
     },
     
     // Open book to specific spread
     openToSpread(bookId, spreadNumber) {
-        if (spreadNumber >= 1 && spreadNumber <= 5) {
+        if (spreadNumber >= 1 && spreadNumber <= 8) {
             this.setBookState(bookId, spreadNumber);
         }
     },
@@ -440,7 +452,7 @@ const Books3D = {
                 this.flipBook(container);
                 
                 currentState++;
-                if (currentState > 5) { // Циклически через все 6 состояний
+                if (currentState > 8) { // Циклически через все 9 состояний
                     currentState = 0;
                     currentIndex = (currentIndex + 1) % bookContainers.length;
                 }
@@ -463,9 +475,9 @@ const Books3D = {
             return {
                 id: bookId,
                 state: state,
-                stateNames: ['closed', 'spread-1', 'spread-2', 'spread-3', 'spread-4', 'spread-5'],
-                totalStates: 6,
-                maxSpreads: 5
+                stateNames: ['closed', 'spread-1', 'spread-2', 'spread-3', 'spread-4', 'spread-5', 'spread-6', 'spread-7', 'spread-8'],
+                totalStates: 9,
+                maxSpreads: 8
             };
         }
         return null;
@@ -548,8 +560,8 @@ const Shop = {
             managerMessage = `Здравствуйте! Хочу заказать ${service.title} за ${service.price}. Расскажите подробнее об услуге.`;
         }
         
-        // Открываем диалог с менеджером
-        const managerUrl = `https://t.me/cosmeticsourc?text=${encodeURIComponent(managerMessage)}`;
+        // Открываем диалог с менеджером (ОБНОВЛЕННЫЙ КОНТАКТ)
+        const managerUrl = `https://t.me/aadesignmagg?text=${encodeURIComponent(managerMessage)}`;
         
         // Отправляем данные в Telegram
         const orderData = {
@@ -714,13 +726,13 @@ const FAQ = {
 };
 
 // ================================
-// Contact Links
+// Contact Links - UPDATED CONTACTS
 // ================================
 const Contacts = {
     links: [
-        'https://t.me/cosmeticsourc',
-        'https://instagram.com/aadesingmag',
-        'https://t.me/aadesingmag'
+        'https://t.me/aadesignmagg',      // Менеджер
+        'https://t.me/aadesignmag',       // Канал
+        'https://t.me/aadesignmag'        // Канал (дублирование для третьей кнопки)
     ],
     
     init() {
@@ -740,7 +752,7 @@ const Contacts = {
                     // Track contact click
                     const contactData = {
                         action: 'contact_click',
-                        platform: ['telegram', 'instagram', 'channel'][index],
+                        platform: ['telegram_manager', 'telegram_channel', 'telegram_channel_2'][index],
                         url: this.links[index],
                         timestamp: new Date().toISOString()
                     };
@@ -925,7 +937,8 @@ const App = {
         this.checkConnection();
         
         console.log('✅ A&A Design Web App Ready!');
-        console.log('📖 Updated: Single book with 5 interactive spreads');
+        console.log('📖 Updated: Single book with 8 interactive spreads');
+        console.log('📱 Updated contacts: @aadesignmagg & https://t.me/aadesignmag');
         console.log('⚠️ Reviews section is currently disabled');
     },
     
