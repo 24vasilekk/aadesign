@@ -412,7 +412,7 @@ body.scrolled .floating-logo .logo-img {
 }
 
 /* ================================
-   3D Books Section - CENTERED FIX
+   3D Books Section - CENTERED & SMALLER
    ================================ */
 .books-grid {
     display: flex;
@@ -421,20 +421,20 @@ body.scrolled .floating-logo .logo-img {
     padding: var(--spacing-2xl) var(--spacing-lg);
     perspective: 1500px;
     width: 100%;
-    min-height: 500px;
+    min-height: 450px;
 }
 
 @media (max-width: 768px) {
     .books-grid {
         padding: var(--spacing-xl) var(--spacing-md);
-        min-height: 450px;
+        min-height: 400px;
     }
 }
 
 .book-container {
     width: 100%;
-    max-width: 600px;
-    height: 400px;
+    max-width: 500px;
+    height: 350px;
     perspective: 1500px;
     display: flex;
     justify-content: center;
@@ -445,8 +445,8 @@ body.scrolled .floating-logo .logo-img {
 
 .book {
     position: relative;
-    width: 240px;
-    height: 320px;
+    width: 200px;
+    height: 280px;
     transform-style: preserve-3d;
     transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     cursor: pointer;
@@ -568,7 +568,7 @@ body.scrolled .floating-logo .logo-img {
     visibility: hidden !important;
 }
 
-/* When book is open (states 1-9), keep it centered */
+/* When book is open (states 1-9), keep it centered and slightly smaller */
 .book-container.state-1 .book,
 .book-container.state-2 .book,
 .book-container.state-3 .book,
@@ -578,7 +578,7 @@ body.scrolled .floating-logo .logo-img {
 .book-container.state-7 .book,
 .book-container.state-8 .book,
 .book-container.state-9 .book {
-    transform: rotateY(0deg) rotateX(0deg) scale(1);
+    transform: rotateY(0deg) rotateX(0deg) scale(0.85);
     animation: none;
 }
 
@@ -608,16 +608,52 @@ body.scrolled .floating-logo .logo-img {
     left: -50%;
 }
 
-@media (max-width: 480px) {
+/* Mobile optimization */
+@media (max-width: 768px) {
     .book-container {
-        width: 100%;
-        max-width: 100%;
-        height: 350px;
+        max-width: 400px;
+        height: 300px;
     }
     
     .book {
-        width: 200px;
+        width: 180px;
+        height: 250px;
+    }
+    
+    .book-container.state-1 .book,
+    .book-container.state-2 .book,
+    .book-container.state-3 .book,
+    .book-container.state-4 .book,
+    .book-container.state-5 .book,
+    .book-container.state-6 .book,
+    .book-container.state-7 .book,
+    .book-container.state-8 .book,
+    .book-container.state-9 .book {
+        transform: rotateY(0deg) rotateX(0deg) scale(0.75);
+    }
+}
+
+@media (max-width: 480px) {
+    .book-container {
+        max-width: 100%;
         height: 280px;
+    }
+    
+    .book {
+        width: 160px;
+        height: 220px;
+    }
+    
+    .book-container.state-1 .book,
+    .book-container.state-2 .book,
+    .book-container.state-3 .book,
+    .book-container.state-4 .book,
+    .book-container.state-5 .book,
+    .book-container.state-6 .book,
+    .book-container.state-7 .book,
+    .book-container.state-8 .book,
+    .book-container.state-9 .book {
+        transform: rotateY(0deg) rotateX(0deg) scale(0.7);
     }
 }
 
