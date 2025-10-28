@@ -393,13 +393,13 @@ const Shop = {
 };
 
 // ================================
-// Yandex Maps Integration
+// Yandex Maps Integration - ТОЛЬКО МОСКВА И ОБНИНСК
 // ================================
 const TypographyMap = {
     map: null,
     currentCity: null,
     
-    // Typography locations across Russia
+    // Typography locations - ТОЛЬКО 2 ГОРОДА
     typographies: {
         'moscow': {
             name: 'Москва',
@@ -407,46 +407,10 @@ const TypographyMap = {
             address: 'ул. Тверская, д. 12, стр. 1, Москва, 125009',
             zoom: 12
         },
-        'spb': {
-            name: 'Санкт-Петербург',
-            coords: [59.934280, 30.335099],
-            address: 'Невский проспект, д. 28, Санкт-Петербург, 191186',
-            zoom: 12
-        },
-        'kazan': {
-            name: 'Казань',
-            coords: [55.796127, 49.106414],
-            address: 'ул. Баумана, д. 58, Казань, 420111',
-            zoom: 13
-        },
-        'ekb': {
-            name: 'Екатеринбург',
-            coords: [56.838011, 60.597474],
-            address: 'ул. Вайнера, д. 9, Екатеринбург, 620014',
-            zoom: 13
-        },
-        'nsk': {
-            name: 'Новосибирск',
-            coords: [55.030199, 82.920430],
-            address: 'Красный проспект, д. 35, Новосибирск, 630099',
-            zoom: 13
-        },
-        'nn': {
-            name: 'Нижний Новгород',
-            coords: [56.326887, 44.006516],
-            address: 'Большая Покровская, д. 15, Нижний Новгород, 603005',
-            zoom: 13
-        },
-        'samara': {
-            name: 'Самара',
-            coords: [53.195878, 50.100202],
-            address: 'ул. Ленинградская, д. 2, Самара, 443001',
-            zoom: 13
-        },
-        'rostov': {
-            name: 'Ростов-на-Дону',
-            coords: [47.222078, 39.720358],
-            address: 'Большая Садовая, д. 46, Ростов-на-Дону, 344002',
+        'obninsk': {
+            name: 'Обнинск',
+            coords: [55.095833, 36.606944],
+            address: 'пр. Ленина, д. 103, Обнинск, Калужская обл., 249034',
             zoom: 13
         }
     },
@@ -456,7 +420,6 @@ const TypographyMap = {
         if (typeof ymaps !== 'undefined') {
             ymaps.ready(() => {
                 this.initMap();
-                this.setupCityButtons();
                 this.setupInfoCard();
             });
         } else {
@@ -468,14 +431,14 @@ const TypographyMap = {
         const mapContainer = document.getElementById('map');
         if (!mapContainer) return;
         
-        // Create map centered on Russia
+        // Create map centered between Moscow and Obninsk
         this.map = new ymaps.Map('map', {
-            center: [55.751244, 37.618423], // Moscow by default
-            zoom: 5,
+            center: [55.4, 37.1], // Between Moscow and Obninsk
+            zoom: 8,
             controls: ['zoomControl', 'geolocationControl']
         });
         
-        // Add placemarks for all typographies
+        // Add placemarks for typographies
         Object.entries(this.typographies).forEach(([key, typography]) => {
             const placemark = new ymaps.Placemark(
                 typography.coords,
@@ -500,47 +463,6 @@ const TypographyMap = {
         });
     },
     
-    setupCityButtons() {
-        const citiesGrid = document.getElementById('cities-grid');
-        if (!citiesGrid) return;
-        
-        // Create city buttons
-        Object.entries(this.typographies).forEach(([key, typography]) => {
-            const button = document.createElement('button');
-            button.className = 'city-btn';
-            button.textContent = typography.name;
-            button.dataset.city = key;
-            
-            button.addEventListener('click', () => {
-                this.selectCity(key);
-                TelegramApp.hapticFeedback('light');
-            });
-            
-            citiesGrid.appendChild(button);
-        });
-    },
-    
-    selectCity(cityKey) {
-        const typography = this.typographies[cityKey];
-        if (!typography || !this.map) return;
-        
-        // Update active button
-        document.querySelectorAll('.city-btn').forEach(btn => {
-            btn.classList.toggle('active', btn.dataset.city === cityKey);
-        });
-        
-        // Zoom to city
-        this.map.setCenter(typography.coords, typography.zoom, {
-            duration: 500
-        });
-        
-        // Show info
-        this.showTypographyInfo(cityKey);
-        
-        // Track analytics
-        Analytics.track('map_city_select', { city: typography.name });
-    },
-    
     showTypographyInfo(cityKey) {
         const typography = this.typographies[cityKey];
         if (!typography) return;
@@ -561,6 +483,16 @@ const TypographyMap = {
                 infoCard.style.animation = 'fadeInUp 0.4s ease forwards';
             }, 10);
         }
+        
+        // Zoom to selected city
+        if (this.map) {
+            this.map.setCenter(typography.coords, typography.zoom, {
+                duration: 500
+            });
+        }
+        
+        // Track analytics
+        Analytics.track('map_city_select', { city: typography.name });
     },
     
     setupInfoCard() {
@@ -937,7 +869,7 @@ const App = {
         
         console.log('✅ App Ready!');
         console.log('📱 Device:', Utils.getDeviceType());
-        console.log('📖 Features: Bottom Nav, 3D Books (18 pages), Yandex Maps, Glass UI');
+        console.log('📖 Features: Bottom Nav, 3D Books (18 pages), Yandex Maps (2 cities), Glass UI');
     },
     
     setupErrorHandler() {
