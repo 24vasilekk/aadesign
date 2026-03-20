@@ -4,13 +4,13 @@
   "description": "A&A Design - Кастомные журналы Telegram Web App с интерактивными 3D книгами",
   "main": "index.html",
   "scripts": {
-    "start": "npx serve -s . -l $PORT",
-    "dev": "npx serve -s . -l 3000",
+    "start": "serve -s . -l $PORT",
+    "dev": "serve -s . -l 3000",
     "build": "echo 'No build step required for static files'",
     "test": "echo 'No tests specified'",
     "validate-images": "node scripts/validate-images.js",
     "deploy": "echo 'Deploy to your hosting service'",
-    "lint": "npx htmlhint index.html && npx stylelint css/styles.css"
+    "lint": "htmlhint index.html && stylelint css/styles.css"
   },
   "keywords": [
     "telegram",

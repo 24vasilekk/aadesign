@@ -251,7 +251,7 @@ archive/
 backup/
 
 # OS generated files
-Icon?
+/Icon?
 
 # Custom exclusions for A&A Design
 # Uncomment if you have specific files to ignore
